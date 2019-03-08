@@ -45,6 +45,27 @@
                     <input type="number" name="nps" id="number" min="0" max="10" placeholder="10" required>
                 </div>
             </section>
+            <section id="support-team">
+                <h2>Customer support team</h2>
+                <p>Which support team did you interact with?</p>
+                <select name="teams" id="dropdown">
+                    <option value="tech-support" selected>Technical support</option>
+                    <option value="premium-support">Premium support</option>
+                    <option value="preferred-care">Preferred Care</option>
+                </select>
+            </section>
+            <section id="service-rating">
+                <h2>Detailed Service Rating</h2>
+            </section>
+            <section id="feedback">
+                <h2>Tell us more...</h2>
+                <textarea name="free-text" id="free-text" cols="30" rows="10">What did we do well? What should we improve?</textarea>
+                <p>Do you want us to contact you to discuss about your experience?</p>
+                <label for="contact-me">Yes:</label>
+                <input type="checkbox" name="contact-me" id="yes-contact" value="yes">
+                <label for="contact-me-not">No:</label>
+                <input type="checkbox" name="contact-me-not" id="no-contact" value="no">
+            </section>
             <button type="submit" id="submit">Send</button>
         </form>
     </main>
