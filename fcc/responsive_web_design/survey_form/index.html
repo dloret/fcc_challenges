@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style/style.css">
     <title>Survey form</title>
 </head>
 <body>
@@ -15,7 +16,7 @@
 
         <form action="http://example.com" method="post" id="survey-form">
             <section id="identification">
-                <h2>Who are you?</h2>
+                <h2>Tell us more about yourself!</h2>
                 <div id="fullName">
                     <label for="firstName">First name *:</label>
                     <input type="text" name="firstName" id="firstName" placeholder="John" required>
@@ -34,6 +35,7 @@
                     <label for="phone">Phone number:</label>
                     <input type="tel" name="phone" id="phone" placeholder="0123456789" pattern="[0-9]{10}">
                 </div>
+                <button type="button">Next</button>
             </section>
 
             <section id="net-promoter-score">
@@ -45,6 +47,7 @@
                     <label for="nps" id="number-label">Overall score *:</label>
                     <input type="number" name="nps" id="number" min="0" max="10" placeholder="10" required>
                 </div>
+                <button type="button">Next</button>
             </section>
 
             <section id="support-team">
@@ -55,6 +58,7 @@
                     <option value="premium-support">Premium support</option>
                     <option value="preferred-care">Preferred Care</option>
                 </select>
+                <button type="button">Next</button>
             </section>
 
             <section id="service-rating">
@@ -112,6 +116,7 @@
                     <label for="court-rating">5</label>
                     <input type="radio" name="court-rating" id="5" value="5">
                 </div>
+                <button type="button">Next</button>
             </section>
 
             <section id="feedback">
@@ -125,10 +130,11 @@
                     <label for="contact-me-not">No:</label>
                     <input type="checkbox" name="contact-me-not" id="no-contact" value="no">
                 </div>
+                <button type="submit" id="submit">Send</button>
             </section>
-            <button type="submit" id="submit">Send</button>
         </form>
     </main>
+    <script src="script/index.js"></script>
     <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
 </body>
 </html>

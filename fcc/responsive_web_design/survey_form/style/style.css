@@ -1,0 +1,22 @@
+.hide {
+    position: absolute;
+    right: 10000px;
+}
+
+main {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 3fr;
+}
+
+header {
+    align-self: center;
+    justify-self: center;
+    text-align: center;
+}
+
+@media only screen and (min-device-width: 668px) {
+    #identification {
+        display: block;
+    }
+}
