@@ -9,17 +9,35 @@
 <body>
     <main>
         <header>
-            <h1>Support survey</h1>
-            <p>Please tell us about your experience with the customer support team</p>
+            <h1 id="title">Support survey</h1>
+            <p id="description">Please tell us about your experience with the customer support team</p>
         </header>
-        <section>
-            <h2>Who are you?</h2>
-            <div id="fullName">
-                <input type="text" name="firstName" id="firstName">
-                <input type="text" name="middleName" id="middleName">
-                <input type="text" name="lastName" id="lastName">
-            </div>
-        </section>
+
+        <form action="http://example.com" method="post" id="survey-form">
+            <section id="identification">
+                <h2>Who are you?</h2>
+                <div id="fullName">
+                    <label for="firstName">First name *:</label>
+                    <input type="text" name="firstName" id="firstName" placeholder="John" required>
+
+                    <label for="middleName">Middle name:</label>
+                    <input type="text" name="middleName" placeholder="Skip if not applicable" id="middleName">
+
+                    <label for="lastName" id="name-label">Last name *:</label>
+                    <input type="text" name="lastName" id="name" placeholder="Doe" required>
+                </div>
+
+                <label for="email" id="email-label">E-mail address *:</label>
+                <input type="email" name="email" id="email" placeholder="john.doe@example.com" required>
+                
+                <label for="phone">Phone number:</label>
+                <input type="tel" name="phone" id="phone" placeholder="0123456789" pattern="[0-9]{10}">
+
+                <label for="company">Company name:</label>
+                <input type="text" name="company" id="company">
+            </section>
+            <button type="submit" id="submit">Send</button>
+        </form>
     </main>
     <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
 </body>
