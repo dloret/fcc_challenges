@@ -27,14 +27,23 @@
                     <input type="text" name="lastName" id="name" placeholder="Doe" required>
                 </div>
 
-                <label for="email" id="email-label">E-mail address *:</label>
-                <input type="email" name="email" id="email" placeholder="john.doe@example.com" required>
-                
-                <label for="phone">Phone number:</label>
-                <input type="tel" name="phone" id="phone" placeholder="0123456789" pattern="[0-9]{10}">
+                <div id="contact">
+                    <label for="email" id="email-label">E-mail address *:</label>
+                    <input type="email" name="email" id="email" placeholder="john.doe@example.com" required>
+                    
+                    <label for="phone">Phone number:</label>
+                    <input type="tel" name="phone" id="phone" placeholder="0123456789" pattern="[0-9]{10}">
+                </div>
+            </section>
+            <section id="net-promoter-score">
+                <h2>Global Score</h2>
+                <p>How likely are you to recommand our service to a friend?</p>
+                <p>Enter a value ranging from 0 (not likely) to 10 (most likely)</p>
 
-                <label for="company">Company name:</label>
-                <input type="text" name="company" id="company">
+                <div id="score">
+                    <label for="nps" id="number-label">Overall score *:</label>
+                    <input type="number" name="nps" id="number" min="0" max="10" placeholder="10" required>
+                </div>
             </section>
             <button type="submit" id="submit">Send</button>
         </form>
