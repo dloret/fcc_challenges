@@ -18,22 +18,32 @@
             <section id="identification">
                 <h2>Tell us more about yourself!</h2>
                 <div id="fullName">
-                    <label for="firstName">First name *:</label>
-                    <input type="text" name="firstName" id="firstName" placeholder="John" required>
+                    <div class="name">
+                        <label for="firstName">First name *:</label>
+                        <input type="text" name="firstName" id="firstName" placeholder="John" required>
+                    </div>
 
-                    <label for="middleName">Middle name:</label>
-                    <input type="text" name="middleName" placeholder="Skip if not applicable" id="middleName">
+                    <div class="name">
+                        <label for="middleName">Middle name:</label>
+                        <input type="text" name="middleName" placeholder="Skip if not applicable" id="middleName">
+                    </div>
 
-                    <label for="lastName" id="name-label">Last name *:</label>
-                    <input type="text" name="lastName" id="name" placeholder="Doe" required>
+                    <div class="name">
+                        <label for="lastName" id="name-label">Last name *:</label>
+                        <input type="text" name="lastName" id="name" placeholder="Doe" required>
+                    </div>
                 </div>
 
                 <div id="contact">
-                    <label for="email" id="email-label">E-mail address *:</label>
-                    <input type="email" name="email" id="email" placeholder="john.doe@example.com" required>
+                    <div class="contact">
+                        <label for="email" id="email-label">E-mail address *:</label>
+                        <input type="email" name="email" id="email" placeholder="john.doe@example.com" required>
+                    </div>
                     
-                    <label for="phone">Phone number:</label>
-                    <input type="tel" name="phone" id="phone" placeholder="0123456789" pattern="[0-9]{10}">
+                    <div class="contact">
+                        <label for="phone">Phone number:</label>
+                        <input type="tel" name="phone" id="phone" placeholder="0123456789" pattern="[0-9]{10}">
+                    </div>
                 </div>
                 <button type="button">Next</button>
             </section>
