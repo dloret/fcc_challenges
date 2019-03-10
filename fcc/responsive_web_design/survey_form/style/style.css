@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+@import url('https://fonts.googleapis.com/css?family=Source+Serif+Pro');
+
 .hide {
     position: absolute;
     right: 10000px;
@@ -19,12 +22,21 @@ main {
     width: 95%;
     height: 90%;
     border-radius: 10px;
+    font-family: 'Source Serif Pro', serif;
+}
+
+h1, h2 {
+    font-family: 'Roboto', sans-serif;
 }
 
 header {
     align-self: center;
     justify-self: center;
     text-align: center;
+}
+
+header p {
+    margin-right: 10px;
 }
 
 form {
@@ -60,6 +72,20 @@ input[type="text"], input[type="email"], input[type="tel"] {
     width: 150px;
     height: 30px;
     border-radius: 5px;
+    margin-top: 3px;
+}
+
+input[type="number"] {
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+}
+
+select {
+    width: 150px;
+    height: 30px;
+    border-style: none;
+    align-self: center;
 }
 
 label {
@@ -72,9 +98,57 @@ button {
     height: 3em;
     margin-top: 20px;
     margin-left: auto;
-    background-color: #55f;
+    background-color: #6c6cb4;
+    color: antiquewhite;
+    font-weight: bold;
     border-style: none;
     border-radius: 5px;
+}
+
+#net-promoter-score {
+    padding-right: 10px;
+}
+
+#net-promoter-score > h2, p, #score {
+    margin-left: 20px;
+}
+
+#service-rating > h2, p, div.radio {
+    margin-left: 20px;
+}
+
+#service-rating div {
+    display: flex;
+    justify-content: space-between;
+}
+
+div.rad-buttons {
+    margin-right: 10px
+}
+
+.radio label {
+    margin-right: 0;
+}
+
+.radio input {
+    margin-left: 0;
+    margin-right: 5px;
+}
+
+#service-rating button {
+    margin-right: 10px;
+    margin-top: 5px;
+}
+
+#feedback > h2, textarea, #call-me {
+    margin-left: 20px;
+    margin-right: 10px;
+}
+
+.callme {
+    width: 80px;
+    display: flex;
+    justify-content: space-between;
 }
 
 @media only screen and (min-device-width: 668px) {
