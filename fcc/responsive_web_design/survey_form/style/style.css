@@ -160,6 +160,12 @@ div.rad-buttons {
 }
 
 @media only screen and (min-device-width: 668px) {
-    #identification {
+    main {
+        width: 70%;
+    }
+
+    .rad-buttons label{
+        margin-left: 40px;
+        margin-right: 5px;
     }
 }
