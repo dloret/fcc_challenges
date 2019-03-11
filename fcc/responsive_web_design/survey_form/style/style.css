@@ -6,6 +6,14 @@
     right: 10000px;
 }
 
+.validation-ok {
+    border: 1px solid green;
+}
+
+.validation-ko {
+    border: 2px solid red;
+}
+
 body {
     background-color: #131414;
     display: flex;
