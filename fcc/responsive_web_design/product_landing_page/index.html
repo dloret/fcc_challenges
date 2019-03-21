@@ -1,24 +1,35 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Trail running</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+    integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" media="screen" href="style/style.css">
 </head>
+
 <body>
   <header id="header">
     <div id='logo'>
-      <img src="https://s3.eu-west-3.amazonaws.com/2d2h.net/fcc/responsive_web_design/product_landing_page/images/shoes.png" id="header-img" alt="Flying shoe image by Clker-Free-Vector-Images on Pixabay">
+      <img
+        src="https://s3.eu-west-3.amazonaws.com/2d2h.net/fcc/responsive_web_design/product_landing_page/images/shoes.png"
+        id="header-img" alt="Flying shoe image by Clker-Free-Vector-Images on Pixabay">
       <h1>Trails'r us</h1>
     </div>
     <nav id="nav-bar">
       <ul>
-        <li><a href="https://utmbmontblanc.com/en/ueil.php" target="_blank" rel="noopener noreferrer">UTMB real page</a></li>
-        <li><a href="#trail" class="nav-link">link1</a></li>
-        <li><a href="#content" class="nav-link">link2</a></li>
-        <li><a href="#join" class="nav-link">link3</a></li>
+        <a href="#trail" class="nav-link">
+          <li>Trail</li>
+        </a>
+        <a href="#content" class="nav-link">
+          <li>Races</li>
+        </a>
+        <a href="#join" class="nav-link">
+          <li>Join us</li>
+        </a>
       </ul>
     </nav>
   </header>
@@ -26,14 +37,94 @@
   <main>
     <section id="trail">
       <h2>Trail running</h2>
-      <p>This landing page is an exercise from the <a href="https://www.freecodecamp.org/" target="_blank" rel="noopener noreferrer">Free Code Camp curriculum</a>. If you want to know more about the UTMB, please <a href="https://utmbmontblanc.com/en/ueil.php" target="_blank" rel="noopener noreferrer">go to the official webpage</a></p>
+      <p id="disclaimer">This landing page is an exercise from the <a href="https://www.freecodecamp.org/"
+          target="_blank" rel="noopener noreferrer">Free Code Camp curriculum</a>. If you want to know more about the
+        UTMB, please <a href="https://utmbmontblanc.com/en/ueil.php" target="_blank" rel="noopener noreferrer">go to the
+          official webpage</a></p>
       <h3>What is trail running?</h3>
-      <p>According to <a href="https://en.wikipedia.org/wiki/Trail_running" target="_blank" rel="noopener noreferrer">Wikipedia</a> trail running is a sport combining running and hinking in wilderness. It is done generally done over longer distances and involve significant amounts of ascent. This is the main difference with cross country running, which is done over shorter distances. This is a recently fashionable sport. Most of the famous races over the globe were founded in the beginning of the 21<sup>st</sup> century. One of the oldest and most famous trail races in Europe is the UTMB, "Ultra Trail du Mont Blanc". A short video shows the best moments of the 2018 edition.</p>
-      <iframe id="video" src="https://www.youtube.com/embed/2xKLYGVObAI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <p id="trail-definition"><a href="https://en.wikipedia.org/wiki/Trail_running" target="_blank"
+          rel="noopener noreferrer">Trail running</a> is a sport combining running and hiking in wilderness. It is
+        generally done over longer distances and involves a significant amount of ascent. This is the main difference
+        with cross country running, which is done over shorter distances. </p>
+      <p id="utmb-presentation">This is a recently fashionable sport. Most of the famous races over the globe were
+        founded in the beginning of the 21<sup>st</sup> century. The UTMB, "Ultra Trail du Mont Blanc", is one of the
+        oldest in Europe. It is run over a length of 171km for 10,000 meters of ascent. A short video shows the best
+        moments of the 2018 edition.</p>
+      <iframe id="video" src="https://www.youtube.com/embed/2xKLYGVObAI" frameborder="0"
+        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </section>
 
     <section id="content">
       <h2>Organization</h2>
+      <h3>Pick up a race</h3>
+      <div id="races">
+        <article class="race">
+          <h4><i class="fas fa-paw"></i> 30 km</h4>
+          <h5>Description</h5>
+          <div class="race-container">
+            <p class="race-desc">The perfect distance to begin a serious race. Don't underestimate the 1883 meters of
+              ascent!</p>
+          </div>
+        </article>
+        <article class="race">
+          <h4><i class="fas fa-horse"></i> 54 km</h4>
+          <h5>Description</h5>
+          <div class="race-container">
+            <p class="race-desc">Improve your resistance, prove that you can do it. 3,271 meters of ascent are waiting
+              for you.</p>
+          </div>
+        </article>
+        <article class="race">
+          <h4><i class="fas fa-dove"></i> 87 km</h4>
+          <h5>Description</h5>
+          <div class="race-container">
+            <p class="race-desc">Now this is serious. Be prepared to climb 6,587 meters!</p>
+          </div>
+        </article>
+        <article class="race">
+          <h4><i class="fas fa-dragon"></i> 171 km</h4>
+          <h5>Description</h5>
+          <div class="race-container">
+            <p class="race-desc">The pinacle. You can do it. Participate to a legendary race. Expect 10,000 meters of
+              ascent.</p>
+          </div>
+        </article>
+      </div>
+      <div id="equipment">
+        <h3>What equipment do you need?</h3>
+        <p>To participate to the race, you'll need a few mandatory items, for your safety and comfort. This list is not
+          exhaustive, please check the <a
+            href="https://utmbmontblanc.com/en/page/20/utmb%3Csup%3E%C2%AE%3C-sup%3E.html">official regulations</a> to
+          comply.</p>
+        <article class="equipment">
+          <h4>Back pack</h4>
+          <img src="images/backpack.jpeg" alt="backpack">
+        </article>
+        <article class="equipment">
+          <h4>Torches</h4>
+          <img src="images/torches.jpeg" alt="head lamp">
+        </article>
+        <article class="equipment">
+          <h4>Survival blanket</h4>
+          <img src="images/survival.jpeg" alt="survival blanket">
+        </article>
+        <article class="equipment">
+          <h4>Whistle</h4>
+          <img src="images/whistle.jpeg" alt="orange plastic whistle">
+        </article>
+        <article class="equipment">
+          <h4>Jacket with hood</h4>
+          <img src="images/hoodie.webp" alt="blue hoodie">
+        </article>
+        <article class="equipment">
+          <h4>Race leggings</h4>
+          <img src="images/leggings.webp" alt="blue and black running leggings">
+        </article>
+        <article class="equipment">
+          <h4>Water-proof gloves</h4>
+          <img src="images/gloves.jpeg" alt="a pair of black gloves">
+        </article>
+      </div>
     </section>
 
     <section id="join">
@@ -49,7 +140,10 @@
     <p>Follow us! <span class="fab fa-twitter-square"></span><span class="fab fa-facebook-square"></span></p>
   </footer>
 
-  <script defer src="https://use.fontawesome.com/releases/v5.7.2/js/all.js" integrity="sha384-0pzryjIRos8mFBWMzSSZApWtPl/5++eIfzYmTgBBmXYdhvxPc+XcFEk+zJwDgWbP" crossorigin="anonymous"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.7.2/js/all.js"
+    integrity="sha384-0pzryjIRos8mFBWMzSSZApWtPl/5++eIfzYmTgBBmXYdhvxPc+XcFEk+zJwDgWbP"
+    crossorigin="anonymous"></script>
   <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
 </body>
+
 </html>

@@ -1,10 +1,19 @@
+/* https://www.color-hex.com/color-palette/1294 */
+
+@import url('https://fonts.googleapis.com/css?family=Baloo+Bhaijaan');
+@import url('https://fonts.googleapis.com/css?family=Life+Savers');
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
+
 body {
   margin: 0;
+  height: 100vh;
   display: grid;
   grid-template-areas: "header"
                        "main-content"
                        "footer";
-  grid-template-rows: 1fr 3fr 1fr;
+  grid-template-rows: .4fr 3fr 1fr;
+  justify-content: center;
+  background-color: #005b96;
 }
 
 header {
@@ -12,10 +21,11 @@ header {
   position: fixed;
   height: 8vh;
   width: 100vw;
-  background-color: beige;
+  background-color: #b3cde0;
   display: grid;
   grid-template-areas: "logo navigation";
   grid-template-columns: 1fr 2fr;
+  box-shadow: 0 5px 7px #333;
 }
 
 #logo {
@@ -33,12 +43,21 @@ header {
 #logo h1 {
   text-align: start;
   vertical-align: middle;
+  margin-top: 15px;
+  margin-bottom: 0;
+  margin-left: 3px;
   white-space: nowrap;
-  font-family: sans-serif;
+  font-family: 'Baloo Bhaijaan', cursive;
+  color: #011f4b;
 }
 
 #nav-bar {
   grid-area: navigation;
+  display: flex;
+  align-content: center;
+  margin: 0;
+  font-family: 'Life Savers', serif;
+  font-weight: bold;
 }
 
 nav, ul {
@@ -47,13 +66,144 @@ nav, ul {
 
 nav ul {
   list-style: none;
-  display: inline-flex;
-  justify-content: space-between;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-link {
+  border-radius: 5px;
+  padding: 8px 5px;
+  width: 110px;
+  text-align: center;
+  background-color: #011f4b;
+  color: #b3cde0;
+  text-decoration: none;
+}
+
+.nav-link:hover {
+  cursor: pointer;
+  background-color: #005b96;
+  color: #b3cde0;
+  box-shadow: 5px 5px 5px #6497b1;
+}
+
+#fcc_test_suite_wrapper {
+  width: 30vw;
 }
 
 main {
   display: grid;
   grid-area: main-content;
+  width: 80vw;
+  background-color: #eee;
+  margin-top: 8vh;
+  padding: 1px 10px;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+h2, h3, h4 {
+  font-family: 'Life Savers', serif;
+}
+
+h3 {
+  margin-left: 20px;
+}
+
+p {
+  text-align: justify;
+}
+
+#trail {
+  display: grid;
+  grid-template-rows: .5fr .7fr .5fr .5fr 1.5fr;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 5px;
+  /* padding-top: 10px; */
+}
+
+#trail > h2, #disclaimer, h3, #trail-definition {
+  grid-column: 1 / 3;
+}
+
+iframe {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 5;
+  grid-row-end: 6;
+}
+
+#utmb-presentation {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 5;
+  grid-row-end: 6;
+  margin: 0;
+}
+
+#races {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-gap: 15px;
+}
+
+.race {
+  display: flex;
+  flex-direction: column;
+  width: 155px;
+  border: 1px #011f4b solid;
+  border-radius: 5px;
+  text-align: center;
+  justify-self: center;
+}
+
+.race > h4, h5 {
+  width: 100%;
+  border-bottom: 1px #011f4b solid;
+  margin: 0;
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+
+.race h4 {
+  background-color: #b3cde0;
+  background-clip: border-box;
+}
+
+.race h5 {
+  background-color: #005b96;
+  color: #b3cde0;
+}
+
+.race-container {
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+}
+
+.race-container::before {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  opacity: .3;
+  background-image: url(../images/mont-blanc-ign.jpg);
+}
+
+.race-desc {
+  height: 100%;
+  width: 100%;
+  font-weight: bold;
+  text-align: left;
+  margin: 0;
+  padding: 3px;
 }
 
 footer {
