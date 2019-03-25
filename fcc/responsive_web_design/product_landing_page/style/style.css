@@ -281,7 +281,7 @@ footer svg {
     grid-template-areas: "logo"
                          "navigation";
     height: 15vh;
-    max-width: 375px;
+    max-width: 667px;
     width: 100vw;
   }
 
