@@ -331,3 +331,39 @@ footer svg {
     width: 90.5vw;
   }
 }
+
+@media only screen and (min-device-width: 875px) {
+  #trail {
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: .5fr .5fr .5fr 1fr;
+  }
+
+  #trail > h2, h3, #disclaimer {
+    grid-column: 1/6;
+  }
+
+  #trail-definition {
+    grid-column: 1/2;
+    margin: 0;
+  }
+
+  iframe {
+    grid-column: 2/3;
+    grid-row: 4/5;
+    justify-self: center;
+  }
+
+  #utmb-presentation {
+    grid-column: 3/4;
+    grid-row: 4/5;
+  }
+
+  #races {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+  }
+
+  .equipment {
+    width: 15%;
+  }
+}
