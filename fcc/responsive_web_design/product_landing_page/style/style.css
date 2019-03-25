@@ -4,6 +4,10 @@
 @import url('https://fonts.googleapis.com/css?family=Life+Savers');
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
 
+/*
+* GENERAL STYLES
+*******************/
+
 body {
   margin: 0;
   height: 100vh;
@@ -15,6 +19,10 @@ body {
   justify-content: center;
   background-color: #005b96;
 }
+
+/*
+* NAVIGATION
+********************/
 
 header {
   grid-area: header;
@@ -93,6 +101,10 @@ nav ul {
 #fcc_test_suite_wrapper {
   width: 30vw;
 }
+
+/*
+* MAIN CONTENT
+********************/
 
 main {
   display: grid;
@@ -206,11 +218,116 @@ iframe {
   padding: 3px;
 }
 
+#equipment {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.equipment {
+  border: 1px #005b96 solid;
+  border-radius: 5px;
+  margin: 5px;
+  width: 30%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+}
+
+.equipment img {
+  width: 80%;
+}
+
+#join form{
+  display: flex;
+  justify-content: center;
+}
+ input {
+   border-radius: 5px;
+ }
+ input[type="email"] {
+   width: 200px;
+   height: 30px;
+   padding-left: 3px;
+ }
+
+ input[type="submit"] {
+   border-style: none;
+   background-color: #005b96;
+   color: white;
+   font-weight: bold;
+   height: 35px;
+   margin-left: 5px;
+ }
+
 footer {
   display: flex;
   grid-area: footer;
+  background-color: #eee;
+  justify-content: center;
+  font-family: 'Source Sans Pro', sans-serif;
 }
 
-@media only screen and (max-device-width: 667px) {
+footer svg {
+  margin-right: 5px;
+}
 
+
+@media only screen and (max-device-width: 667px) {
+  #header {
+    grid-template-areas: "logo"
+                         "navigation";
+    height: 15vh;
+    max-width: 375px;
+    width: 100vw;
+  }
+
+  #logo {
+    max-width: 375px;
+    width: 100vw;
+  }
+
+  #logo h1 {
+    margin-top: 0;
+    margin-left: 50px;
+  }
+
+  #nav-bar ul {
+    width: 100%;
+  }
+
+  main {
+    width: 85vw;
+  }
+
+  main {
+    display: flex;
+    flex-direction: column;
+    margin-top: 15vh;
+  }
+
+  p {
+    font-size: .9em;
+    line-height: 1.5em;
+  }
+
+  #trail {
+    display: flex;
+    flex-direction: column;
+  }
+
+  iframe {
+    margin-top: 10px;
+  }
+
+  .race {
+    width: 140px;
+  }
+
+  footer {
+    width: 90.5vw;
+  }
 }
