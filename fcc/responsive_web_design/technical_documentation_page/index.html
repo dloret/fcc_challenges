@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Technical documentation page</title>
+  <link rel="stylesheet" href="style/style.css">
+</head>
+
+<body>
+  <nav id="navbar">
+    <header>Asynchronous JavaScript</header>
+    <ul>
+      <a href="#Introduction" class="nav-link" rel="internal">
+        <li>Introduction</li>
+      </a>
+      <a href="#Prerequisites" class="nav-link" rel="internal">
+        <li>Prerequisites</li>
+      </a>
+      <a href="#Introducing_async_JavaScript" class="nav-link" rel="internal">
+        <li>Introducing async JavaScript</li>
+      </a>
+      <a href="#Async_loops_and_intervals" class="nav-link" rel="internal">
+        <li>Async loops and intervals</li>
+      </a>
+      <a href="#Async_operations_with_Promises" class="nav-link" rel="internal">
+        <li>Async operations with Promises</li>
+      </a>
+      <a href="#Easier_async_programming_with_async_await" class="nav-link" rel="internal">
+        <li>Easier async programming with async await</li>
+      </a>
+    </ul>
+  </nav>
+
+  <main id="main-doc">
+    <section class="main-section" id="Introduction">
+      <header>Introduction</header>
+      <article>
+        <p>Asynchronous JavaScript is used to effectively handle potential blocking operations such as fetching
+          resources from a server. When only one thing happens at once, a function depending on another function has to
+          wait for the other function to finish and return. From the perspective of the user, the program is essentially
+          stopped during that time and a spinning cursor on the screen is generally visible.</p>
+        <p>This is a frustrating experience and a waste of computing processing power.Asynchronous programming lets you
+          get other work done in the meantime. This is important in the case of web browsers. When a web app runs in a
+          browser and it executes and intensive chunk of code without returning control to the browser, this one can
+          appear to be frozen. This is called <strong>blocking</strong>: the browser is prevented from handling user
+          input.</p>
+        <p>Modern software design increasingly revolves around <strong>asynchronous programming</strong> to allow
+          programs to do more than one thing at a time. It used to be hard to write asynchronous code but it's gotten a
+          lot easier. We'll explore further why asynchronous code matters and how to design code that avoids blocking,
+          spinlocks and other processor power-wasting problems.</p>
+      </article>
+    </section>
+    <section class="main-section" id="Prerequisites">
+      <header>Prerequisites</header>
+      <article>
+        <p>Asynchronous JavaScript is a fairly advanced topic and you are advised to work through the first tutorials
+          before attempting this:</p>
+        <ul>
+          <li><a href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/First_steps">JavaScript first steps</a>
+          </li>
+          <li><a href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks">JavaScript building
+              blocks</a></li>
+        </ul>
+      </article>
+    </section>
+    <section class="main-section" id="Introducing_async_JavaScript">
+      <header>Introducing async JavaScript</header>
+
+      <h2>Synchronous JavaScript</h2>
+      <p>To understand what asynchronous code is, we need to understand what synchronous code is. In this block of code,
+        the lines are executed one after the other:</p>
+
+      <pre class="prettyprint"><code>
+        const btn = document.querySelector('button');
+        btn.addEventListener('click', () => {
+          alert('You clicked me!');
+
+          let pElem = document.createElement('p');
+          pElem.textContent = 'This is a newly-added paragraph';
+          document.body.appendChild(pElem);
+        });
+      </code></pre>
+
+      <p>While each operation is being processed, nothing else will happen (rendering is paused). This is because
+        client-side JavaScript is single-threaded blocking language: only one thing can happen at once, on a single main
+        thread. Everything else is blocked until the current operation completes.</p>
+
+      <h2>Asynchronous JavaScript</h2>
+      <p>To avoid such blocking, many Web APIs now use asynchronous code, especially for fetching resources from an
+        external device (accessing a database and returning data from it, for instance). There are two main types of
+        asynchronous code:</p>
+      <ul>
+        <li>old-style callbacks</li>
+        <li>newer-style promises</li>
+      </ul>
+
+      <h3>Async callbacks</h3>
+      <p>Callbacks are functions that are passed as parameters to other functions to be executed whena previous
+        operation has returned. The second parameter of <code>addEventListener()</code> is an example:</p>
+      <pre class="prettyprint"><code>
+        btn.addEventListener('click', () => console.log('I am the callback!'));
+      </code></pre>
+      <p>The first paramater is the type of event to be listened for, and the second parameter is the function that is
+        invoked when the event is fired.</p>
+      <p>When we pass a callback function to another function, we only pass the function definition as the parameter, so
+        that this callback function is not executed immediately. It is "called back" (hence the name) asynchronously,
+        somewhere inside the containing function's body. The containing function is responsible for executing the
+        callback function when the time comes.</p>
+      <pre class="prettyprint"><code>
+        function loadAsset(url, type, callback) {
+          let xhr = new XMLHttpRequest();
+          xhr.open('GET', url);
+          xhr.responseType = type;
+          xhr.onload = () => callback(xhr.response);
+          xhr.send();
+        }
+
+        function displayImage(blob) {
+          //displaying the resource on the user interface
+        }
+
+        loadAsset('../images/coffee.jpg', 'blob', displayImage);
+      </code></pre>
+      <p>Here the <code>displayImage()</code> function creates an image from the url's target and appends it to the
+        document. The resource is fetched by the <code>loadAsset()</code> function and it passes the response to the
+        callback to do something with it.</p>
+      <p>Callbacks are versatile, they allow you to control the order in which functions are run, but also how and what
+        data is passed between them. Note that some callbacks run synchronously, like when
+        <code>Array.prototype.forEach()</code> loops through the items of an array.</p>
+      <pre class="prettyprint"><code>
+        const gods = ['Apollo', 'Artemis', 'Hermes', 'Zeus', 'Helios'];
+
+        gods.forEach((godName, index) => {
+          console.log(`${index} - ${godName}`);
+        });
+      </code></pre>
+      <p>In this case, <code>forEach()</code> takes a unique callback as parameter and it runs immediately, without waiting for
+        anything.</p>
+      
+      <h3>Promises</h3>
+      <p>Promises are the new style of async code, used in modern web APIs. The <code>fetch()</code> API is a good example. It is basically a more modern and efficient version of <code>XMLHttpRequest</code></p>
+      <pre class="prettyprint"><code>
+        fetch('../source/products.json').then()
+      </code></pre>
+    </section>
+    <section class="main-section" id="Async_loops_and_intervals">
+      <header>Async loops and intervals</header>
+    </section>
+    <section class="main-section" id="Async_operations_with_Promises">
+      <header>Async operations with Promises</header>
+    </section>
+    <section class="main-section" id="Easier_async_programming_with_async_await">
+      <header>Easier async programming with async await</header>
+    </section>
+  </main>
+
+  <footer>
+    <p>This page was built using the <a href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous"
+        target="_blank" rel="noopener noreferrer">Mozilla Developer Network</a> documentation</p>
+  </footer>
+
+  <script
+    src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js?skin=desert"></script>
+  <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+</body>
+
+</html>

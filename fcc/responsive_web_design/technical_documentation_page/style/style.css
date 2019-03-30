@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css?family=Slabo+27px');
+@import url('https://fonts.googleapis.com/css?family=Lobster');
+
+
+body {
+  box-sizing: border-box;
+  font-family: 'Slabo 27px', serif;
+  text-align: justify;
+  line-height: 1.5em;
+}
+
+header {
+  font-family: 'Lobster', cursive;
+  font-size: 1.5em;
+}
