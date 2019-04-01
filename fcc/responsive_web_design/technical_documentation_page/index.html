@@ -137,17 +137,129 @@
           console.log(`${index} - ${godName}`);
         });
       </code></pre>
-      <p>In this case, <code>forEach()</code> takes a unique callback as parameter and it runs immediately, without waiting for
+      <p>In this case, <code>forEach()</code> takes a unique callback as parameter and it runs immediately, without
+        waiting for
         anything.</p>
-      
+
       <h3>Promises</h3>
-      <p>Promises are the new style of async code, used in modern web APIs. The <code>fetch()</code> API is a good example. It is basically a more modern and efficient version of <code>XMLHttpRequest</code></p>
+      <p>Promises are the new style of async code, used in modern web APIs. The <code>fetch()</code> API is a good
+        example. It is basically a more modern and efficient version of <code>XMLHttpRequest</code>:</p>
       <pre class="prettyprint"><code>
-        fetch('../source/products.json').then()
+        fetch('../source/products.json')
+          .then((response) => response.json())
+          .then((json) => {
+            products = json;
+            initialize();
+          })
+          .catch((error) => console.log(`Fetch problem: ${error.message}`));
       </code></pre>
+      <p><code>fetch()</code> takes a single parameter, the url of the resource to fetch from the network, and returns a
+        promise. The promise is an object representing the result (completion or failure) of the async operation. It
+        represents an intermediate state. In essence, it's the browser's way of saying: "I promise to get back to you
+        with the answer as soon as I can". Then we've got three further code blocks chained onto the end of the
+        <code>fetch()</code> operation:</p>
+      <ul>
+        <li>Two <code>then()</code> blocks. Both contain a callback function that will run if the fetch operation is
+          successful. Each callback receives the result returned by the previous successful operation. Each
+          <code>then()</code> block returns a promise, meaning you can chain multiple <code>then()</code> blocks onto
+          each other, so multiple async operations can be made to run in order.</li>
+        <li>The <code>catch()</code> block, at the end, runs if any of the previous <code>then()</code> blocks fails. It
+          is similar to <code>try {} catch {}</code>, an error object is made available inside which can be used to
+          report the kind of error that has ocurred.</li>
+      </ul>
+      <p>Async operations like promises are put into an event queue, which runs after the main thread has finished
+        processing and so <strong>does not block</strong> subsequent JavaScript code from running. The queued operations
+        will complete as soon as possible then return their results to the JavaScript environment.</p>
+      <h3>Conclusion</h3>
+      <p>At its most basic, JavaScript is a synchronous, blocking, single-threaded language: only one action can be in
+        progress at a time. But web browsers define functions and APIs that allow us to register functions that should
+        not be executed synchronously but when some kind of event occurs (passage of time, user's interaction with the
+        mouse, arrival of data from the network, etc.). It means that you can let your code do several things at the
+        same time without blocking the main thread.</p>
     </section>
+
     <section class="main-section" id="Async_loops_and_intervals">
       <header>Async loops and intervals</header>
+      <p>For a long time, JavaScript has made available a number of functions that allow you to asynchronously execute
+        code after a certain time interval has elapsed, and repeatedly execute a block of code periodically until you
+        tell it to stop. These are:</p>
+      <ul>
+        <li><code>setTimeout()</code> &mdash; Execute a specified block of code once after a specified time has elapsed.
+        </li>
+        <li><code>setInterval()</code> &mdash; Execute a specified block of code repeatedly with a fixed time delay
+          between each call.</li>
+        <li><code>requestAnimationFrame()</code> &mdash; The modern version of <code>setInterval()</code>, it executes a
+          specified block of code before the browser next repaints the display, allowing an animation to be run at a
+          suitable framerate, regardless of the environment it is being run in.</li>
+      </ul>
+      <p>These functions actually run on the main thread, but you're able to run other code between iterations to a more
+        or less efficient degree, depending on how processor intensive these operations are. These functions are used
+        for running constant animations and other background processing on a web site or application.</p>
+
+      <h2>setTimeout()</h2>
+      <p><code>setTimeout()</code> executes a specified block of code once after a specified time has elapsed. It takes
+        the following parameters:</p>
+      <ul>
+        <li>A function to run, or a reference to a function defined elsewhere.</li>
+        <li>A number representing the number of milliseconds to wait before executing that function. If you specify a
+          value or 0 or omit the number, then the function will run immediately.</li>
+        <li>Zero or more values that represent the parameters you want to pass to the function when it is run.</li>
+      </ul>
+      <p>Here, the browser will wait for 2 seconds and display an alert message:</p>
+      <pre class="prettyprint"><code>
+        const myGreeting = setTimeout(() => {
+          alert('Hello Mr Universe!');
+        }, 2000);
+      </code></pre>
+      <p>The function could be named and even defined somewhere else:</p>
+      <pre class="prettyprint"><code>
+        function sayHi() {
+          alert('Hello Mr Universe!');
+        }
+
+        const myGreeting = setTimeout(sayHi, 2000);
+      </code></pre>
+      <p><code>setTimeout()</code> returns an identifier value that can be used to refer to the timeout later, to stop
+        it for instance (see "Clearing timeouts", below).</p>
+      <h3>Passing parameters to a setTimeout() function</h3>
+      <p>Any parameter we want to pass to the function being run inside <code>setTimeout()</code> have to be passed as
+        additional parameters, at the end of the list:</p>
+      <pre class="prettyprint"><code>
+        function sayHi(who) {
+          alert(`Hello ${who}!`);
+        }
+
+        let myGreeting = setTimeout(sayHi, 2000, 'Mr Universe');
+      </code></pre>
+      <p>The name of the person to say hello is passed as a third parameter.</p>
+      <h3>Clearing timeouts</h3>
+      <p>Finally, if a timeout has been created, you can cancel it before the specified time has elapsed by calling
+        <code>clearTimeout()</code> and passing it the identifier of the <code>setTimeout()</code> call as a parameter:
+      </p>
+      <pre class="prettyprint"><code>
+        clearTimeout(myGreeting);
+      </code></pre>
+
+      <h2>setInterval()</h2>
+      <p><code>setInterval()</code> runs a block of code over and over again. It works in a similar way to
+        <code>setTimeout()</code>, except that the function passed to it as first parameter is executed repeatedly at an
+        interval equal to the number of milliseconds provided as the second parameter. You can also pass any parameters
+        required by the function being executed in as subsequent parameters of the <code>setInterval()</code> call.</p>
+      <p>The following function creates a new <code>Date()</code> object, extracts a time string out of it, using
+        <code>toLocaleTimeString()</code> and then displays it in the UI. We then run it once per second using
+        <code>setInterval()</code>, creating the effect of a digital clock that updates once per second.</p>
+      <pre class="prettyprint"><code>
+        function displayTime() {
+          let date = new Date();
+          let time = date.toLocaleTimeString();
+          document.getElementById('demo').textContent = time;
+        }
+
+        const createClock = setInterval(displayTime, 1000);
+      </code></pre>
+
+      <h3>Clearing intervals</h3>
+      <p><code>setInterval()</code> keeps running a task forever</p>
     </section>
     <section class="main-section" id="Async_operations_with_Promises">
       <header>Async operations with Promises</header>
@@ -162,8 +274,7 @@
         target="_blank" rel="noopener noreferrer">Mozilla Developer Network</a> documentation</p>
   </footer>
 
-  <script
-    src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js?skin=desert"></script>
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js?skin=desert"></script>
   <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
 </body>
 
