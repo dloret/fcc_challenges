@@ -1,6 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Slabo+27px');
 @import url('https://fonts.googleapis.com/css?family=Lobster');
 
+/*
+GLOBAL STYLES
+-----------------*/
 
 body {
   box-sizing: border-box;
@@ -12,4 +15,13 @@ body {
 header {
   font-family: 'Lobster', cursive;
   font-size: 1.5em;
+}
+
+.prettyprinted {
+  overflow-x: scroll;
+}
+
+p > code, li > code {
+  background-color: rgba(235, 93, 93, 0.3);
+  border-radius: 3px;
 }

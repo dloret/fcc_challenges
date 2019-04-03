@@ -259,14 +259,173 @@
       </code></pre>
 
       <h3>Clearing intervals</h3>
-      <p><code>setInterval()</code> keeps running a task forever</p>
-    </section>
-    <section class="main-section" id="Async_operations_with_Promises">
-      <header>Async operations with Promises</header>
-    </section>
-    <section class="main-section" id="Easier_async_programming_with_async_await">
-      <header>Easier async programming with async await</header>
-    </section>
+      <p><code>setInterval()</code> keeps running a task forever. We may want to stop such tasks to prevent errors when
+        the browser can't complete a cycle or of the animation being handled has finished. We can do it the same way as
+        we stopped timeouts, by passing the identifier returned by <code>setInterval()</code> to the
+        <code>clearInterval()</code> function:</p>
+      <pre class="prettyprint"><code>
+        const myInterval = setInterval(myFunction, 2000);
+
+        clearInterval(myInterval);
+      </code></pre>
+
+      <h2>Things to keep in mind about setTimeout() and setInterval()</h2>
+      <h3>Recursive timeouts</h3>
+      <p><code>setTimeout()</code> can be called recursively to run the same code repeatedly, instead of using
+        <code>setInterval()</code>. Here is an illustration:</p>
+      <pre class="prettyprint"><code>
+        let i = 1;
+        setTimeout(function run() => {
+          console.log(i);
+          i++;
+          setTimeout(run, 100);
+        }, 100);
+      </code></pre>
+      <p>Here is the version using <code>setInterval()</code>:</p>
+      <pre class="prettyprint"><code>
+        let i = 1;
+        setInterval(() => {
+          console.log(i);
+          i++;
+        }, 100);
+      </code></pre>
+      <p>The difference between the two versions of the code is a subtle one</p>
+      <ul>
+        <li>Recursive <code>setTimeout()</code> guarantees a 100 ms delay between the executions. The code will run and
+          then wait 100 milliseconds before it runs again. The interval will be the same regardless of how long the code
+          takes to run.</li>
+        <li><code>setInterval()</code> does things somewhat differently. The interval we choose <em>includes</em> the
+          time taken to execute the code we want to run in. Let's say the code takes 40 milliseconds to run, then the
+          interval ends up being only 60 milliseconds.</li>
+      </ul>
+      <p>When your code has the potential to take longer to run than the time interval you've assigned, it's better to
+        use recursive <code>setTimeout()</code>. This will keep the time interval constant between executions regardless
+        of how long the code takes to execute, and you won't get errors.</p>
+
+      <h3>Immediate timeouts</h3>
+      <p>Using 0 as the value of <code>setTimeout()</code> schedules the execution of the passed function as soon as
+        possible, but only after the main thread has been run. In the following code, the alert "World" will only run
+        after clicking OK on the alert "Hello":</p>
+      <pre class="prettyprint"><code>
+        setTimeout(() => alert('World'), 0);
+        alert('Hello');
+      </code></pre>
+      <p>This can be useful in cases where you want to set a block of code to run as soon as all of the main thread has
+        finished running. Put it on the async event loop, so it will run straight afterward.</p>
+
+      <h3>Clearing with clearTimeout() or clearInterval()</h3>
+      <p><code>clearInterval()</code> and <code>clearTimeout()</code> use the same list of entries to clear from.
+        Interestingly enough, this means that you can use either method to clear a <code>setTimeout()</code> or
+        <code>setInterval()</code>. But to avoid confusion and for consistency, use the appropriate method.</p>
+
+      <h2>requestAnimationFrame()</h2>
+      <p><code>requestAnimationFrame()</code> is a specialized looping function created for running animations in the
+        browser. It is basically the modern version of <code>setInterval()</code>. It executes a specified block of code
+        before the browser next repaints the display, allowing an animation to be run at a suitable framerate regardless
+        of the environment it is being run in.</p>
+      <p>The method takes a callback to be invoked before the repaint as argument. This is the general pattern you'll
+        see it used:</p>
+      <pre class="prettyprint"><code>
+        function draw() {
+          // Drawing code goes here
+          requestAnimationFrame(draw);
+        }
+
+        draw();
+      </code></pre>
+      <p>The idea is that you define a function in which your animation is updated, then you call it to start the
+        process off. At the end of the function block, you call <code>requestAnimationFrame()</code> with the function
+        reference passed as the parameter and this instructs the browser to call the function again on the next display
+        repaint. This is then run continuously, as we are calling <code>requestAnimationFrame()</code> recursively.</p>
+      <p>We don't specify a time interval for <code>requestAnimationFrame()</code>. It just runs as fast and smoothly as
+        possible in the current conditions (as close as possible to 60 fps - frames per second). The browser doesn't
+        waste time running the animation if it is offscreen, etc.</p>
+      <h3>Including a timestamp</h3>
+      <p>The callback passed to the <code>requestAnimationFrame()</code> function also accepts a parameter: a timestamp
+        value that represents the time since the animation started running. This is useful as this allows to run things
+        at specific times and at a constant pace, regardless of how fast or slow the device might be.</p>
+      <pre class="prettyprint"><code>
+        let startTime = null;
+        function draw(timestamp) {
+          if (!startTime) {
+            startTime = timestamp;
+          }
+          currenTime = timestamp - startTime;
+          // Do something based on current time
+          requestAnimationFrame(draw);
+        }
+      </code></pre>
+      <h3>Clearing a <code>requestAnimationFrame()</code> call</h3>
+      <p>Clearing a <code>requestAnimationFrame()</code> can be done calling the corresponding
+        <code>cancelAnimationFrame()</code>, passing it the value returned by the <code>requestAnimationFrame()</code>
+        (stored in a variable)</p>
+      <pre class="prettyprint"><code>
+        cancelAnimationFrame(myRaF);
+      </code></pre>
+
+      <section class="main-section" id="Async_operations_with_Promises">
+        <header>Async operations with Promises</header>
+        <p>A promise is an object that represents an intermediate state of an operation: <em>a</em> promise that a
+          result of some kind will be returned at some point in the future.</p>
+
+        <h2>The trouble with callbacks</h2>
+        <p>To fully understand why promises are a good thing, it helps to think back why old-style callbacks are
+          problematic.</p>
+        <p>Let's talk about ordering pizza as an analogy. There are certain steps that you have to take for your order
+          to be successful, which don't really make sense to try to execute out of order, or in order but before each
+          previous step has quite finished:</p>
+        <ol>
+          <li>You choose what pizza you want. This can take a while if you're indecisive and may fail if you can't make
+            up your mind, or decide to get a curry instead.</li>
+          <li>You then place your order. This can take a while to return a pizza and may fail if the restaurant does not
+            have the required ingredients to cook it.</li>
+          <li>You then collect your pizza and eat. This may fail if, says, you forgot your wallet so can't pay for the
+            pizza!</li>
+        </ol>
+        <p>With old-style callbacks, a pseudo-code representation of the above functionality might look something like
+          this:</p>
+        <pre class="prettyprint"><code>
+          choosePizza((order) => {
+            placeOrder(order, (pizza) => {
+              collectOrder(pizza, (enjoy) => {
+                eatPizza(enjoy);
+              }, failureCallback);
+            }, failureCallback);
+          }, failureCallback);
+        </code></pre>
+        <p>This is messy and hard to read (often referred to as "callback hell"). If this were real code, it would
+          likely block the main thread until it completes and would require you to call the
+          <code>failureCallback()</code> multiple times.</p>
+
+        <h2>Improvements with promises</h2>
+        <p>Promises make situation like the above much easier to write, parse and run. If we represented the above
+          peudo-code using asynchronous promises instead, we'd end up with something like this:</p>
+        <pre class="prettyprint"><code>
+          choosePizza()
+            .then(order => placeOrder(order))
+            .then(pizza => collectOrder(pizza))
+            .then(enjoy => eatPizza(enjoy))
+            .catch(failureCallback);
+        </code></pre>
+        <p>This is much better. It is easier to see what's going on and a single <code>.catch()</code> block is needed
+          to handle all the errors. It doesn't block the main thread and each operation is guaranteed to wait for
+          previous operations to complete before running. We're able to chain multiple asynchronous actions to occur one
+          after another because each <code>.then()</code> block returns a new promise that resolves when the
+          <code>.then()</code> block is done running.</p>
+        <p>At their most basic promises are similar to event listeners, but with a few differences:</p>
+        <ul>
+          <li>A promise can only succeed or fail once. It cannot succeed or fail twice and it cannot switch from success
+            to failure or vice versa once the operation has completed.</li>
+          <li>If a promise has succeeded or failed and you later add a success / failure callback, the correct callback
+            will be called, even though the event took place earlier</li>
+        </ul>
+
+        <h2>Explaining basic promise syntax: a real example</h2>
+        <p></p>
+      </section>
+      <section class="main-section" id="Easier_async_programming_with_async_await">
+        <header>Easier async programming with async await</header>
+      </section>
   </main>
 
   <footer>
