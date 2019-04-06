@@ -490,7 +490,104 @@
           <code>.catch()</code> blocks in promises are the async equivalent of a try...catch block in sync code.</p>
 
         <h2>Running code in response to multiple promises fulfilling</h2>
-        <p>Let's look at some more advanced features. What if you want to run some code shortly after a whole bunch of promises have all fulfilled?</p>
+        <p>Let's look at some more advanced features. What if you want to run some code shortly after a whole bunch of
+          promises have all fulfilled? You can do this with the <code>Pomise.all()</code> static method. It takes an
+          array of promises as parameter and returns a new promise object that will fulfill only if all promises in the
+          array fulfill:</p>
+        <pre class='prettyprint'><code>
+        Promise.all(p1, p2, p3)
+          .then((values) => {
+            // do something here
+          });
+      </code></pre>
+        <p>If all promises fulfill, the executor function will be passed an array "values as parameter, containing all
+          the results. If any of the promises passed to <code>Promise.all()</code> reject, the whole block will reject.
+          This can be very useful if you're fetching information to dynamically populate a UI. It generally makes sense
+          to receive all the data rather than displaying partial information.</p>
+        <p>Here is a real world example:</p>
+        <pre class='prettyprint'><code>
+          function fetchAndDecode(url, type) {
+            return fetch(url).then((response) => {
+              if (type === 'blob') {
+                return response.blob();
+              } else if (type === 'text') {
+                return response.text();
+              }
+            })
+            .catch(error => console.log(`Fetching error: ${error.message}`));
+          }
+
+          let coffee = fetchAndDecode('coffee.jpg', 'blob');
+          let tea = fetchAndDecode('tea.jpg', 'blob');
+          let description = fetchAndDecode('description.txt', 'text');
+
+          Promise.all([coffee, tea, description])
+            .then((values) => {
+              // store each value returned from the promises in separate variables,
+              // create object URLs from the blobs
+              let objectURL1 = URL.createObjectURL(values[0]);
+              let objectURL2 = URL.createObjectURL(values[1]);
+              let descText = values[2];
+
+              // display the images in &lt;img&gt; elements
+              let image1 = document.createElement('img');
+              let image2 = document.createElement('img');
+              image1.src = objectURL1;
+              image2.src = objectURL2;
+              document.appendChild(image1);
+              document.appendChild(image2);
+
+              // display the text in a paragraph
+              let para = document.createElement('p');
+              para.textContent = descText;
+              document.appendChild(para);
+            });
+        </code></pre>
+        <p>First, we define a function being passed a url and the type of resource being fetched (blob or text). Inside
+          the function, we call the <code>fetch()</code> function to fetch the resource at the specified url. In this
+          case, the second promise we chain on is different depending on what the <code>type</code> value is.
+          Additionally, we don't run the promise chain in isolation, we have added the <code>return</code> keyword
+          before the fetch call. The effect is to run the entire chain and then run the final result (the promise
+          returned by <code>blob()</code> or <code>text()</code>) as the return value of the function just defined. In
+          effect, the <code>return</code> statements pass the results back up the chain to the top.</p>
+        <p>At the end of the block, we chain on a <code>.catch()</code> call, to handle any error that may come up with
+          any of the promises passed in the array to <code>.all()</code>. If any of the promises reject, the catch block
+          will let you know which one had a problem. The <code>.all()</code> block will still fulfill, but just won't
+          display the resources that had problems. If you wanted the <code>.all()</code> to reject, you'd have to chain
+          the <code>.catch()</code> block on to the end of it instead.</p>
+        <p>Next, we call our function three times to begin the process of fetching and decoding the images and text.
+          Each of the returned promises is stored in a variable. Then we define a <code>Promise.all()</code> block to
+          run some code only when all three of the promises stored above have successfully fulfilled. The executor
+          inside the <code>.then()</code> will be passed an array containing the results from the individual promises
+          (decoded response bodies).</p>
+
+        <h2>Running some final code after a promise fulfills / rejects</h2>
+        <p>There will be cases where you want to run a final block of code after a promise completes, regardless of
+          whether it fulfilled or rejected. The <code>.finally()</code> can be chained onto the end of the regular
+          promise chain, allowing you to cut down on code repetition of adding this final code to the end of both the
+          <code>.then()</code> and <code>.catch()</code> blocks.</p>
+        <pre class='prettyprint'><code>
+          myPromise
+            .then(response => doSomething(response))
+            .catch(error => handleError(error))
+            .finally(() => runFinalCode());
+        </code></pre>
+        <p>In a real example, this would look like this:</p>
+        <pre class='prettyprint'><code>
+          function fetchAndDecode(url, type) {
+            return fetch(url).then((response) => {
+              if (type === 'blob') {
+                return response.blob();
+              } else if (type === 'text') {
+                return response.text();
+              }
+            })
+            .catch(error => console.log(`Fetch failed: ${error.message}`))
+            .finally(() => console.log(`Fetch attempt for ${url} finished.`))
+          }
+        </code></pre>
+      
+      <h2>Building your own custom promises</h2>
       </section>
       <section class="main-section" id="Easier_async_programming_with_async_await">
         <header>Easier async programming with async await</header>
