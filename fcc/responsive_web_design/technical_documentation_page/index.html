@@ -586,16 +586,110 @@
             .finally(() => console.log(`Fetch attempt for ${url} finished.`))
           }
         </code></pre>
-      
-      <h2>Building your own custom promises</h2>
+
+        <h2>Building your own custom promises</h2>
+        <p>Combining different promise-based APIs together to create custom functionality is by far the most common way
+          you'll do custom things with promises. There is another way, however.</p>
+
+        <h3>Using the Promise() constructor</h3>
+        <p>It is possible to build your own promises using the <code>Promise()</code> constructor. The main situation in
+          which you'll want to do this is when you've got code based on an old-school asynchronous API that is not
+          promise-based, which you want to promis-ify.</p>
+        <p>Here is a simple example, where we wrap a <code>setTimeout()</code> with a promise. This runs a function
+          after two seconds that resolves the promise with a string of "Success!".</p>
+        <pre class="prettyprint"><code>
+        let timeoutPromise = new Promise((resolve, reject) => {
+          setTimeout(() => {
+            resolve("Success!");
+          }, 2000);
+        });
+      </code></pre>
+        <p><code>resolve()</code> and <code>reject()</code> are functions that you call to resolve or reject the
+          newly-created promise. So, when you call this promise, you can chain a <code>.then()</code> block onto its end
+          an it will be passed the "Success!" string. In the below code, we simply alert that message:</p>
+        <pre class="prettyprint"><code>
+        timeoutPromise()
+          .then(message => alert(message));
+      </code></pre>
+        <p>or even just:</p>
+        <pre class="prettyprint"><code>
+        timeoutPromise().then(alert);
+      </code></pre>
+
+        <h3>Rejecting a custom promise</h3>
+        <p>We can create a promise that rejects using the <code>reject()</code> method, taking a single value: the value
+          to reject with, i.e. the error passed into the <code>.catch()</code> block.</p>
+        <pre class="prettyprint"><code>
+        function timeoutPromise(message, interval) {
+          return new Promise((resolve, reject) => {
+            if (message === '' || typeof message !== 'string') {
+              reject("Message is empty or not a string.");
+            } else if (interval &lt; 0 || typeof interval !== 'number') {
+              reject("Interval is negative or not a number.");
+            } else {
+              setTimeout(() => resolve(message), interval);
+            }
+          })
+        }
+      </code></pre>
+        <p>Here we are passing two values into a custom function, a message to do something with and a time interval
+          before doing this thing. Inside the function, we return a new <code>Promise</code> object. Invoking the
+          function will return the promise we want to use. Inside this Promise constructor, we do a number of checks:
+        </p>
+        <ol>
+          <li>We check to see if the message is appropriate for being alerted. If it's an empty string or not a string
+            at all, we reject the promise with a suitable error message</li>
+          <li>Next, we check to see if the interval is an appropriate interval value. If it's negative or not a number,
+            we reject the promise with a suitable error message.</li>
+          <li>Finally, if the parameters are ok, we resolve the promise with the specified message after the specified
+            interval has passed using <code>setTimeout()</code>.</li>
+        </ol>
+        <p>Since the <code>timeoutPromise()</code> function returns a <code>Promise</code>, we can chain
+          <code>.then()</code>, <code>.catch()</code> blocks onto it to make use of its functionality.</p>
+        <pre class="prettyprint"><code>
+        timeoutPromise('Hello there!', 1000)
+          .then(message => alert(message))
+          .catch(error => console.log(error));
+      </code></pre>
+
+        <h3>A more real-world example</h3>
+        <p>In the above example, the async nature is faked using <code>setTimeout()</code>. One example we'd like to
+          invite you to study is <a href="https://github.com/jakearchibald/idb/" target="_blank"
+            rel="noopener noreferrer">Jake Archibald's idb library</a>. This takes the IndexedDB API, which is an
+          old-style callback-based API for storing and retrieving data on the client-side, and allows you to use it with
+          promises. The following block converts the basice request model used by many IndexedDB methods to use
+          promises:</p>
+        <pre class="prettyprint"><code>
+          function promisifyRequest(request){
+            return new Promise((resolve, reject) => {
+              request.onsuccess = () => resolve(request.result);
+              request.onerror = () => reject(request.error);
+            });
+          }
+        </code></pre>
+
+        <h2>Conclusion</h2>
+        <p>Promises are a good way to build asynchronous applications when we don't know the return value of a function
+          or how long it will take to return. They make it easier to express and reason about sequences of asynchronous
+          operations without deeply nested callbacks. And they support a style of error handling that is similar to the
+          synchronous try / catch statement. We didn't touch on all promise features in this article, just the most
+          interesting and useful ones. Most of modern Web APIs are promise-based, so you'll need to understand promises
+          to get the most out of them. Among those APIs are WebRTC, Web Audio, Media Capture and Streams. Promises will
+          be more and more important as time goes on, so learning to use and understand them is an important step in
+          learning modern JavaScript.</p>
       </section>
       <section class="main-section" id="Easier_async_programming_with_async_await">
         <header>Easier async programming with async await</header>
+        <p><code>async</code> functions and the <code>await</code> keyword are part of the ECMAScript 2017 JavaScript
+          edition. These features are basically synctatic sugar on top of promises, making async code easier to write
+          and to read afterward. They make async code look more like old-school sync code.</p>
+        <h2>The basics of async / await</h2>
+        <p></p>
       </section>
   </main>
 
   <footer>
-    <p>This page was built using the <a href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous"
+    <p>This page was extracted from the <a href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous"
         target="_blank" rel="noopener noreferrer">Mozilla Developer Network</a> documentation</p>
   </footer>
 
