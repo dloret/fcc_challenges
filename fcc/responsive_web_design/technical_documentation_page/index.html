@@ -683,7 +683,160 @@
         <p><code>async</code> functions and the <code>await</code> keyword are part of the ECMAScript 2017 JavaScript
           edition. These features are basically synctatic sugar on top of promises, making async code easier to write
           and to read afterward. They make async code look more like old-school sync code.</p>
+
         <h2>The basics of async / await</h2>
+        <p>There are two parts to async / await.</p>
+        <h3>The async keyword</h3>
+        <p>First of all, we have the <code>async</code> keyword, which you put in front of a function declaration to
+          turn it into an async function. Try typing these lines into the browser's JavaScript console:</p>
+        <pre class="prettyprint"><code>
+          function hello() {
+            return 'Hello!';
+          }
+          hello();
+        </code></pre>
+        <p>The function returns "Hello!", nothing special. But if you turn it into an async function:</p>
+        <pre class="prettyprint"><code>
+          async function hello() {
+            return 'Hello!';
+          }
+          hello();
+        </code></pre>
+        <p>Invoking the function now returns a promise. You can also create an <code>async</code> function like so:</p>
+        <pre class="prettyprint"><code>
+          let hello = async () => 'Hello!';
+          hello();
+        </code></pre>
+        <p>To actually consume the value returned when the promise fulfills, since it's returning a promise, we cound
+          use a <code>.then()</code> block.</p>
+        <pre class="prettyprint"><code>
+          hello()
+            .then(value => console.log(value));
+        </code></pre>
+        <p>or even just a shorthand such as:</p>
+        <pre class="prettyprint"><code>
+          hello().then(console.log);
+        </code></pre>
+
+        <h3>The await keyword</h3>
+        <p>The real advantage of the <code>async</code> functions becomes apparent when you combine it with the
+          <code>await</code> keyword. This can be put in front of any <code>async</code> promise-based function to make
+          the code execution pause on that line until the promise fulfills, then the fulfillement value is returned.
+          Here is a trivial example:</p>
+        <pre class="prettyprint"><code>
+          async function hello() {
+            return greeting = await Promise.resolve('Hello!');
+          }
+          hello().then(alert);
+        </code></pre>
+
+        <h2>Rewriting promise code with async await</h2>
+        <p>Let's look back at a simple fetch example.</p>
+        <pre class="prettyprint"><code>
+          fetch('coffee.jpg')
+            .then(response => response.blob())
+            .then((myBlob) => {
+              let objectURL = URL.createObjectURL(myBlob);
+              let image = document.createElement('img');
+              image.src = objectURL;
+              document.appendChild(image);
+            })
+            .catch(error => console.log(`Error while fetching: ${error.message}`));
+        </code></pre>
+        <p>Let's convert this to use async / await to see how much simpler it makes things.</p>
+        <pre class="prettyprint"><code>
+          async function myFetch() {
+            let response = await fetch('coffee.jpg');
+            let myBlob = await response.blob();
+
+            let objectURL = URL.createObjectURL(myBlob);
+            let image = document.createElement('img');
+            image.src = objectURL;
+            document.appendChild(image);
+          }
+        </code></pre>
+        <p>It makes code much simpler and easier to understand. No more <code>.then()</code> blocks everywhere!</p>
+        <p>Since the <code>async</code> keyword turns a function into a promise, you could refactor your code to use a
+          hybrid approach of promises and <code>await</code>, bringing the second half of the function out into a new
+          block, to make it more flexible:</p>
+        <pre class="prettyprint"><code>
+          async function myFetch() {
+            let response = await fetch('coffee.jpg');
+            return await response.blob();
+          }
+
+          myFetch()
+           .then((blob) => {
+              let objectURL = URL.createObjectURL(myBlob);
+              let image = document.createElement('img');
+              image.src = objectURL;
+              document.body.appendChild(image);
+           });
+        </code></pre>
+
+        <h3>But how does it work?</h3>
+        <p>It is necessary to wrap the code inside a function and to include the <code>async</code> keyword before the
+          <code>function</code> keyword. You have to create an async function to define a block of code in which you'll
+          run your async code; <code>await</code> only works inside of async functions.</p>
+        <p>Inside the <code>myFetch()</code> function, instead of needing to chain a <code>.then()</code> block on to
+          the end of each promise-based method, you just need to add an <code>await</code> keyword before the method
+          call and then assign the result to a variable. The <code>await</code> keyword causes the JavaScript parser to
+          pause on this line until the async call has returned its result, then once it is complete, move on to the next
+          line. So, for example:</p>
+        <pre class="prettyprint"><code>
+          let response = await fetch('coffee.jpg');
+        </code></pre>
+        <p>The response returned by <code>fetch()</code> is assigned to a variable when it is available, and the parser
+          pauses on this line until that occurs. Once the response is available, the parser moves to the next line,
+          which creates a blob out of it. This line also invokes an async promise-based method, so we use
+          <code>await</code> there as well. When the result of the operation returns, we return if out of the
+          <code>myFetch()</code> function.</p>
+        <p>This means that when we call the <code>myFetch()</code> function, it returns a promise, so we can chain a
+          <code>.then()</code> onto the end of it, inside which we handle displaying the blob onscreen.</p>
+
+        <h3>Adding error handling</h3>
+        <p>If you want to add error handling, you've got a couple of options. You can use the familiar sync try / catch
+          structure:</p>
+        <pre class="prettyprint"><code>
+          async function myFetch() {
+            try {
+              let response = await fetch('coffee.jpg');
+              let myBlob = await response.blob();
+
+              let objectURL = URL.createObjectURL(myBlob);
+              let image = document.createElement('img');
+              image.src = objectURL;
+              document.body.appendChild(image);
+            } catch(error) {
+              console.log(error);
+            }
+          }
+
+          myFetch();
+        </code></pre>
+        <p>The <code>catch()</code> block is passed an error object that can be logged to the console. Using the
+          refactored hybrid version of the code, you'd be better off chaining a <code>.catch()</code>block onto the end
+          of the <code>.then()</code> block like this:</p>
+        <pre class="prettyprint"><code>
+          async function myFetch() {
+            let response = await fetch('coffee.jpg');
+            return await response.blob();
+          }
+
+          myFetch()
+           .then((blob) => {
+              let objectURL = URL.createObjectURL(myBlob);
+              let image = document.createElement('img');
+              image.src = objectURL;
+              document.body.appendChild(image);
+           })
+           .catch(error => console.log(error));
+        </code></pre>
+        <p>This is because the <code>.catch()</code> block will catch errors occurring in both the async function call
+          and the promise chain. If you used the try / catch block here, you might still get unhandled errors in the
+          <code>myFetch()</code> function when called.</p>
+        
+        <h2>Awaiting a promise.all</h2>
         <p></p>
       </section>
   </main>
