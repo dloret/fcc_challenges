@@ -25,3 +25,44 @@ p > code, li > code {
   background-color: rgba(235, 93, 93, 0.3);
   border-radius: 3px;
 }
+
+nav > header {
+  margin: 5px 0;
+  text-align: center;
+}
+/*
+NAVIGATION
+-----------------*/
+
+nav > ul {
+  list-style-type: none;
+  border-top: 1px solid black;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  border-radius: 5px;
+  padding-inline-start: 0;
+}
+
+nav li {
+  padding: 5px 35px;
+  border-bottom: 1px solid black;
+}
+
+nav li:hover {
+  background-color: rgba(235, 93, 93, 0.3);
+}
+
+.nav-link {
+  text-decoration: none;
+  color: black;
+}
+
+.nav-link:visited {
+  color: darkgrey;
+}
+
+@media screen and (min-width: 1024px) {
+  body {
+    display: grid;
+  }
+}
