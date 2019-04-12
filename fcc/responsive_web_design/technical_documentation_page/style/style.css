@@ -64,5 +64,31 @@ nav li:hover {
 @media screen and (min-width: 1024px) {
   body {
     display: grid;
+    grid-template-areas: "navigation main-content"
+                         "foot-content foot-content";
+    grid-column-gap: 1vw;
+  }
+
+  nav {
+    grid-area: navigation;
+    white-space: nowrap;
+    height: 100vh;
+    max-width: 30vw;
+    position: sticky;
+    top: 0;
+  }
+
+  main {
+    grid-area: main-content;
+    max-width: 50vw;
+  }
+
+  footer {
+    grid-area: foot-content;
+    justify-self: center;
+  }
+
+  main header {
+    margin-top: 5px;
   }
 }
