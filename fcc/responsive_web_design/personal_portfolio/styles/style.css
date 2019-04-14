@@ -1,0 +1,124 @@
+/* https://www.colourlovers.com/palette/725298/Strawberry_Mousse */
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
+@import url('https://fonts.googleapis.com/css?family=Dancing+Script');
+
+:root {
+  --taupe: #A79C8E;
+  --white-chocolate: #F8ECC9;
+  --light-rose: #F1BBBA;
+  --strawberry: #EB9F9F;
+  --rich-cocoa: #6B5344;
+}
+
+/*
+Global style
+------------------*/
+body {
+  box-sizing: border-box;
+  font-family: 'Source Sans Pro', sans-serif;
+  color: var(--rich-cocoa);
+  margin: 0;
+}
+
+/*
+Navigation
+------------------*/
+nav {
+  position: sticky;
+  top: 0;
+  height: 8vh;
+  display: flex;
+  align-items: center;
+  font-size: 1.2em;
+  font-weight: bolder;
+  background-color: var(--taupe);
+}
+
+nav ul {
+  display: flex;
+  width: 100vw;
+  list-style: none;
+  justify-content: space-evenly;
+  margin: 0;
+}
+
+nav a {
+  text-decoration: none;
+  color: var(--white-chocolate);
+}
+
+/*
+Header
+------------------*/
+header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: var(--strawberry);
+}
+
+h1 {
+  font-family: 'Dancing Script', cursive;
+  margin: 0;
+}
+
+.svg-inline--fa.fa-w-10 {
+  height: 2em;
+  width: 2em;
+  margin: 20px;
+}
+
+/*
+Projects
+------------------*/
+main {
+  background-color: var(--rich-cocoa);
+  color: var(--white-chocolate);
+}
+
+h2 {
+  margin: 0;
+}
+
+/*
+Project cards
+------------------*/
+.project-tile {
+  border: 3px solid var(--taupe);
+  margin-bottom: 10px;
+}
+
+.project-tile a {
+  display: grid;
+  grid-template-areas: "image title"
+                       "image description";
+  grid-template-columns: 100px auto;
+  grid-template-rows: 25px auto;
+  text-decoration: none;
+  align-items: center;
+  color: var(--rich-cocoa);
+}
+.project-tile img{
+  grid-area: image;
+  max-width: 100px;
+  border-right: 1px solid var(--taupe);
+}
+
+.project-tile h4 {
+  grid-area: title;
+  height: 100%;
+  margin: 0;
+  background-color: var(--strawberry);
+  padding-left: 3px;
+}
+
+.project-tile p {
+  grid-area: description;
+  height: 100%;
+  margin:0;
+  background-color: var(--light-rose);
+  padding-left: 3px;
+  font-size: .8em;
+}
