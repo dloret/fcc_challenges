@@ -133,3 +133,24 @@ section footer a {
   height: .8em;
   width: .8em;
 }
+
+/*
+Main Footer
+----------------*/
+#personal article:last-child {
+  margin-bottom: 0;
+}
+
+.contact {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  min-height: 100vh;
+  background-color: var(--taupe);
+}
+
+.contact a {
+  color: var(--rich-cocoa);
+  font-size: 2em;
+}
