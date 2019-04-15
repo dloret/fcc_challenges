@@ -122,3 +122,14 @@ Project cards
   padding-left: 3px;
   font-size: .8em;
 }
+
+/* Certifications*/
+section footer a {
+  text-decoration: none;
+  color: var(--white-chocolate);
+}
+
+.svg-inline--fa.fa-w-18 {
+  height: .8em;
+  width: .8em;
+}
