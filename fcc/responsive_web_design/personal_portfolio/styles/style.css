@@ -29,8 +29,9 @@ nav {
   height: 8vh;
   display: flex;
   align-items: center;
-  background-color: var(--taupe);
   font-size: 1.2em;
+  font-weight: bolder;
+  background-color: var(--taupe);
 }
 
 nav ul {
@@ -44,8 +45,6 @@ nav ul {
 nav a {
   text-decoration: none;
   color: var(--white-chocolate);
-  font-weight: bold;
-  text-shadow: 2px 0 2px var(--rich-cocoa);
 }
 
 /*
@@ -215,16 +214,16 @@ Main Footer
   /* Footer styles */
   .contact {
     display: grid;
-    grid-template-columns: repeat(1fr);
+    grid-template-columns: repeat(4, 1fr);
     grid-template-rows: 1fr 1fr;
     grid-gap: 40px;
-    justify-items: start;
+    justify-items: center;
     align-items: flex-start;
   }
 
   .contact h2 {
     grid-column: 1/5;
-    align-self: end;
+    align-self: center;
   }
 }
 
