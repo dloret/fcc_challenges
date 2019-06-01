@@ -1,9 +1,13 @@
 import React from "react";
 
+import "../styles/Quote.scss";
+
 const Quote = ({ quote, author }) => (
   <article>
     <blockquote id="text">{quote}</blockquote>
-    <cite id="author">{author}</cite>
+    <div className="verticalLine">
+      <cite id="author">{author}</cite>
+    </div>
   </article>
 );
 

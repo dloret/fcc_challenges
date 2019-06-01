@@ -1,32 +1,50 @@
-import React from 'react';
+import React from "react";
+import { connect } from "react-redux";
 
-import Quote from './Quote';
-import Twitter from './Twitter';
-import Next from './Next';
+import Quote from "./Quote";
+import Twitter from "./Twitter";
+import Next from "./Next";
 
-import '../styles/App.scss';
+import { getCategories, getQuote } from "../state/actions";
+import "../styles/App.scss";
 
-const quoteCategoriesURL = 'http://quotes.rest/qod/categories.json';
-const quotesURL = 'http://quotes.rest/qod.json?category=';
+const quoteCategoriesURL = "http://quotes.rest/qod/categories.json";
 
-const fakeData = {
-  author: 'fake author',
-  quote: 'fake quote'
-};
+class App extends React.Component {
+  componentWillMount() {
+    this.props.getCategories(quoteCategoriesURL);
+    this.props.getQuote();
+  }
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <h1>Random quote machine</h1>
-      </header>
-      <main id="quote-box">
-        <Quote author={fakeData.author} quote={fakeData.quote} />
-        <Twitter />
-        <Next />
-      </main>
-    </div>
-  );
+  render() {
+    // console.log(this.props);
+    const { categories, quote } = this.props;
+    return (
+      <div className="App">
+        <header className="App-header">
+          <h1>Random quote machine</h1>
+        </header>
+        <main id="quote-box">
+          <Quote author={quote.author} quote={quote.quote} />
+          <Twitter />
+          <Next categories={categories} />
+        </main>
+      </div>
+    );
+  }
 }
 
-export default App;
+const mapStateToProps = state => ({
+  categories: state.categories,
+  quote: state.quote
+});
+
+const mapDispatchToProps = {
+  getCategories,
+  getQuote
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);

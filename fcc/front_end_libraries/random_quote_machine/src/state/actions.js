@@ -7,39 +7,56 @@ export const constants = {
 };
 
 function fetchCategories() {
-  return {
+  return ({
     type: constants.FETCH_CATEGORIES
-  };
+  });
 }
 
 function receivedCategories(categories) {
-  return {
+  return ({
     type: constants.RECEIVED_CATEGORIES,
     payload: categories
-  }
+  });
 }
 
-export async function getCategories(url) {
+export function getCategories(url) {
   return (dispatch) => {
     dispatch(fetchCategories());
-    fetch(url)
+    return fetch(url)
       .then(resp => resp.json())
       .then(json => json.contents.categories)
       .then(obj => Object.keys(obj))
-      .then(categories => dispatch(receivedCategories(categories)))
+      .then(categories => {
+        // console.log(categories);
+        dispatch(receivedCategories(categories))
+      })
       .catch(error => console.log(`getCategories error: ${error}`));
   }
 }
 
-export function fetchQuote() {
+function fetchQuote() {
   return {
     type: constants.FETCH_QUOTE
   };
 }
 
-export function receivedQuote(quote) {
+function receivedQuote(quote) {
   return {
     type: constants.RECEIVED_QUOTE,
     payload: quote
   };
+}
+
+export function getQuote(url = 'http://quotes.rest/qod.json') {
+  return (dispatch) => {
+    dispatch(fetchQuote());
+    return fetch(url)
+      .then(resp => resp.json())
+      .then(json => json.contents.quotes[0])
+      .then(quote => {
+        // console.log(quote);
+        dispatch(receivedQuote(quote))
+      })
+      .catch(error => console.log(`getQuote error: ${error}`));
+  }
 }

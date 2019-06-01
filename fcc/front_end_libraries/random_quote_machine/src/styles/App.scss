@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css?family=Special+Elite&display=swap');
+
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+header {
+  font-family: 'Special Elite', cursive;
+  font-size: .85em;
+  color: #333;
+}
+
+main {
+  min-height: 95vh;
+  background-image: url(../images/typewriter_mobile.jpg);
+  background-position: center;
+}
