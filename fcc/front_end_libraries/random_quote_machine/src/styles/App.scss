@@ -13,7 +13,26 @@ header {
 }
 
 main {
-  min-height: 95vh;
+  min-height: 70vh;
   background-image: url(../images/typewriter_mobile.jpg);
   background-position: center;
+}
+
+@media screen and(min-width: 768px) {
+  main {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    background-image: url(../images/large_tv_screen.png);
+    background-repeat: no-repeat;
+    background-position: top;
+    background-size: contain;
+    min-width: 100vw;
+  }
+}
+
+@media screen and(min-width: 1280px) {
+  main {
+    min-height: 80vh;
+  }
 }

@@ -4,3 +4,17 @@
   left: 30px;
   color: #333;
 }
+
+@media screen and(min-width: 768px) {
+  .fa-twitter-square {
+    bottom: 90px;
+    left: 60px;
+  }
+}
+
+@media screen and(min-width: 1280px) {
+  .fa-twitter-square {
+    bottom: 1%;
+    left: 30%;
+  }
+}

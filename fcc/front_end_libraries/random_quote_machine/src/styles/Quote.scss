@@ -23,3 +23,26 @@ article {
     font-style: unset;
   }
 }
+
+@media screen and(min-width: 768px) {
+  article {
+    max-width: 40vw;
+    align-self: center;
+    margin-top: -150px;
+    margin-left: -40px;
+  }
+}
+
+@media screen and(min-width: 1280px) {
+  article {
+    max-width: 30vw;;
+    margin-top: -30px;
+  }
+}
+
+@media screen and(min-width: 1480px) {
+  article {
+    max-width: 20vw;;
+    margin-top: -20px;
+  }
+}

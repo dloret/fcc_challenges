@@ -10,3 +10,17 @@ button {
   font-weight: bold;
   box-shadow: #333 3px 3px 7px;
 }
+
+@media screen and(min-width: 768px) {
+  button {
+    bottom: 90px;
+    right: 40px;
+  }
+}
+
+@media screen and(min-width: 1280px) {
+  button {
+    bottom: 1%;
+    right: 25%;
+  }
+}
