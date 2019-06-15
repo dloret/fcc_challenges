@@ -3,9 +3,8 @@ import ReactDOM from 'react-dom';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 
-import App from './components/App';
+import App from './components/ui/App';
 import globalReducer from './store/reducers';
-import { createMarkDown, createHTML } from './store/actions';
 import './styles/index.scss';
 import * as serviceWorker from './serviceWorker';
 
@@ -15,8 +14,6 @@ const store = createStore(globalReducer, {
 });
 
 store.subscribe(() => console.log(store.getState()));
-store.dispatch(createMarkDown('# This is a title\nAnd this is **bold text**'));
-store.dispatch(createHTML(store.getState().markdown));
 
 ReactDOM.render(
   <Provider store={store}>

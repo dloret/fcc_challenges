@@ -1,7 +1,7 @@
 import React from 'react';
-import Editor from './Editor';
-import Preview from './Preview';
-import '../styles/App.scss';
+import Editor from '../containers/Editor';
+import Preview from '../containers/Preview';
+import '../../styles/App.scss';
 
 function App() {
   return (
