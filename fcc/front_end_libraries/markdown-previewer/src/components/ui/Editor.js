@@ -1,4 +1,5 @@
 import React from 'react';
+import '../../styles/Editor.scss';
 
 const Editor = ({ markdown, createMarkDown, createHTML }) => {
   const handleChange = event => {
@@ -8,7 +9,13 @@ const Editor = ({ markdown, createMarkDown, createHTML }) => {
 
   return (
     <div className="editor">
-      <h2>Editor</h2>
+      <header>
+        <h2>Editor</h2>
+        <div className="sizing">
+          <i className="fas fa-expand-arrows-alt fa-lg" />
+          <i className="fas fa-compress-arrows-alt fa-lg" />
+        </div>
+      </header>
       <textarea
         id="editor"
         value={markdown}
