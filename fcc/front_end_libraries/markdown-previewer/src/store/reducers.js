@@ -2,6 +2,11 @@ import marked from 'marked';
 import { combineReducers } from 'redux';
 import actions from './actions';
 
+marked.setOptions({
+  gfm: true,
+  breaks: true,
+});
+
 function createMarkDown(state = '', action) {
   return action.type === actions.WRITE_MARKDOWN ? action.payload : state;
 }

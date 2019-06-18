@@ -9,14 +9,16 @@ import globalReducer from './store/reducers';
 import './styles/index.scss';
 import * as serviceWorker from './serviceWorker';
 
-const initialState = {
-  markdown:
-    '# title\n## subtitle\n\nparagraph with __bolded__ text ' +
-    'and a [link to FreeCodeCamp](/https://www.freecodecamp.org/)!\n' +
-    '```\nHere is a code block.\nOn two lines\n```\nHere is `inline code`.' +
-      'test',
-};
+marked.setOptions({
+  gfm: true,
+  breaks: true,
+});
 
+const initialState = {
+  markdown: `# title\n## subtitle\n\nparagraph with __bolded__ text and a [link to FreeCodeCamp](/https://www.freecodecamp.org/)!\n~~~javascript\nfunction hereIs() {\n  return aCodeBlock;\n}\n~~~\nHere is \`inline code\` and some list items:\n - item 1\n - item 2\n\nAs per Arthur C. Clarke:\n> Any sufficiently advanced technology\n> is indistinguishable from magic\n\n![GitHub cat logo](${
+    process.env.PUBLIC_URL
+  }/images/original.png)`,
+};
 initialState.html = `${marked(initialState.markdown)}`;
 
 const store = createStore(globalReducer, initialState);
