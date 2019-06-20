@@ -15,7 +15,12 @@ function createHTML(state = '', action) {
   return action.type === actions.RENDER_HTML ? marked(action.payload) : state;
 }
 
+function toggleEditing(state = true, action) {
+  return action.type === actions.IS_EDITING ? !action.payload : state;
+}
+
 export default combineReducers({
   markdown: createMarkDown,
   html: createHTML,
+  editing: toggleEditing,
 });

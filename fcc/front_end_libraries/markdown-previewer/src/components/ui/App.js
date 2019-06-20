@@ -5,7 +5,7 @@ import '../../styles/App.scss';
 
 function App() {
   return (
-    <div>
+  <div className='app'>
       <header>
         <h1>Markdown previewer</h1>
       </header>

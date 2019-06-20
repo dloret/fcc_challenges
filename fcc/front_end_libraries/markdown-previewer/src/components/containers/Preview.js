@@ -1,16 +1,18 @@
 import { connect } from 'react-redux';
-import { createHTML } from '../../store/actions';
+import { createHTML, edit } from '../../store/actions';
 import Preview from '../ui/Preview';
 
 const mapStateToProps = state => ({
   html: state.html,
+  editing: state.editing,
 });
 
 const mapDispatchToProps = {
   createHTML,
+  edit,
 };
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(Preview);
