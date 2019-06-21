@@ -3,6 +3,12 @@ import Parse from 'react-html-parser';
 import '../../styles/Preview.scss';
 
 const Preview = ({ html, editing, edit }) => {
+  const size = {};
+  if (editing) {
+    size.maxHeight = '5vh';
+    size.overflow = 'hidden';
+  }
+
   const handleClick = () => edit(editing);
 
   return (
@@ -23,7 +29,7 @@ const Preview = ({ html, editing, edit }) => {
           )}
         </div>
       </header>
-      <div id="preview" className="rendered-html">
+      <div id="preview" className="rendered-html" style={size}>
         {Parse(html)}
       </div>
     </div>

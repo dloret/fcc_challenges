@@ -32,7 +32,7 @@ const Editor = ({ markdown, editing, createMarkDown, createHTML, edit }) => {
         value={markdown}
         onChange={handleChange}
         cols="30"
-        rows={editing ? 35 : 0}
+        rows={editing ? 35 / 700 * window.screen.availHeight : 0}
       />
     </div>
   );

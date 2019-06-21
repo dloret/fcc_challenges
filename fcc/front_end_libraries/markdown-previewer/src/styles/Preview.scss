@@ -1,5 +1,6 @@
 .preview {
   border: 1px solid black;
+  margin: 0 3px;
   margin-top: 5px;
 
   header {
@@ -9,9 +10,15 @@
     font-family: Share, sans-serif;
     font-size: 0.7em;
     border-bottom: 1px solid black;
+    color: whitesmoke;
+    background-color: #222;
 
     h2 {
-      margin-left: 5px;
+      margin: 5px;
+    }
+
+    .sizing {
+      margin-right: 3px;
     }
   }
 
