@@ -1,5 +1,6 @@
 {
   "name": "markdown-previewer",
+  "homepage": "http://2d2h.net/fcc/front_end_libraries/markdown_previewer",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
