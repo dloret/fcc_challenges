@@ -1,168 +1,285 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Personal portfolio</title>
+    <script
+      defer
+      src="https://use.fontawesome.com/releases/v5.8.1/js/all.js"
+      integrity="sha384-g5uSoOSBd7KkhAMlnQILrecXvzst9TdC09/VM+pjDTCM+1il8RHz5fKANTFFb+gQ"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="styles/style.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Personal portfolio</title>
-  <script defer src="https://use.fontawesome.com/releases/v5.8.1/js/all.js"
-    integrity="sha384-g5uSoOSBd7KkhAMlnQILrecXvzst9TdC09/VM+pjDTCM+1il8RHz5fKANTFFb+gQ"
-    crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="styles/style.css">
-</head>
-
-<body>
-  <div class='wrapper'>
-    <nav id="navbar">
-      <ul>
-        <li><a href="#welcome-section">About</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#network">Contact</a></li>
-      </ul>
-    </nav>
-    <header id="welcome-section">
-      <h1>Welcom<span class="welcome-last-letter">E</span></h1>
-      <p>i <i class="far fa-heart"></i> web technologies and learning</p>
-      <p class="fas fa-angle-double-down"></p>
-    </header>
-    <main id="projects">
-      <section id="fcc">
-        <h2>Free Code Camp curriculum</h2>
-        <div class="topic responsive">
-          <h3>Responsive web design</h3>
-          <article class="project-tile">
-            <a href="http://2d2h.net/fcc/responsive_web_design/technical_documentation_page/" target="_blank">
-              <img src="images/resp_4_techDoc.png" alt="Screen shot of a technical documentation page">
-              <h4>Technical documentation page</h4>
-              <p>A big article about Asynchronous JavaScript, built with HTML, CSS and a single dependency to Google's
-                <em>code-prettify</em> for the code snippets</p>
-            </a>
-          </article>
-          <article class="project-tile">
-            <a href="http://2d2h.net/fcc/responsive_web_design/survey_form/" target="_blank">
-              <img src="images/resp_2_survey.png" alt="Screen shot of survey form">
-              <h4>Survey form</h4>
-              <p>Satisfaction survey built with HTML, CSS and some JavaScript for validation and a better user
-                experience
-              </p>
-            </a>
-          </article>
-          <article class="project-tile">
-            <a href="http://2d2h.net/fcc/responsive_web_design/product_landing_page/" target="_blank">
-              <img src="images/resp_3_product.png" alt="Screen shot of a landing page for a trail race">
-              <h4>Product landing page</h4>
-              <p>A landing page for a fake trail race, built with HTML and CSS only (grid and flexbox)</p>
-            </a>
-          </article>
-          <article class="project-tile">
-            <a href="http://2d2h.net/fcc/responsive_web_design/tribute/" target="_blank">
-              <img src="images/resp_1_herbert.png" alt="Portrait of Frank Herbert">
-              <h4>Tribute to Frank Herbert</h4>
-              <p>A simple page using HTML and CSS only</p>
-            </a>
-          </article>
-        </div>
-        <div class="topic frontend">
-          <h3>Front End Libraries</h3>
-          <article class="project-tile">
-            <a href="http://codepen.io/dloret/full/WReRbP/" target="_blank">
-              <img src="images/front_5_markdownpng.png"
-                alt="Screen shot of a page with a field to translate markdown in html">
-              <h4>Markdown Previewer</h4>
-              <p>A page built with React, Sass and a dependency to the "marked" parser &amp; compiler to format the
-                markdown text</p>
-            </a>
-          </article>
-          <article class="project-tile">
-            <a href="http://2d2h.net/fcc/front_end_libraries/random_quote_machine/" target="_blank">
-              <img src="images/front_4_quotes.png" alt="Screen shot of a page with random quotes">
-              <h4>Random Quote Machine</h4>
-              <p>A quote API without authentication is queried by a React app. State is managed with Redux. It's styled with Sass.</p>
-            </a>
-          </article>
-          <article class="project-tile">
-            <a href="https://codepen.io/dloret/full/pENpYq" target="_blank">
-              <img src="images/front_2_simon.png" alt="Screen shot of a page with a timer">
-              <h4>Simon Says</h4>
-              <p>The "Simon says" game from the 1980's, built with Vanilla JavaScript</p>
-            </a>
-          </article>
-          <article class="project-tile">
-            <a href="https://codepen.io/dloret/full/zBdYzL" target="_blank">
-              <img src="images/front_1_pomodoro.png" alt="Screen shot of a page with a timer">
-              <h4>Pomodoro Timer</h4>
-              <p>Timer built with Vanilla JavaScript</p>
-            </a>
-          </article>
-          <article class="project-tile">
-            <a href="https://codepen.io/dloret/full/RRLbwL" target="_blank">
-              <img src="images/front_3_ticTacToe.png" alt="Screen shot of a tic tac toe game">
-              <h4>Tic Tac Toe Game</h4>
-              <p>A simple Tic Tac Toe game, built with Vanilla JavaScript</p>
-            </a>
-          </article>
-          <article class="project-tile">
-            <a href="http://codepen.io/dloret/full/gMwNpe/" target="_blank">
-              <img src="images/front_6_calculator.png" alt="Screen shot of a calculator">
-              <h4>JavaScript Calculator</h4>
-              <p>A classical calculator built with HTML, CSS and Vanilla JavaScript</p>
-            </a>
-          </article>
-        </div>
-        <footer>
-          <h3>FCC Certifications</h3>
-          <ul>
-            <li><a href="https://www.freecodecamp.org/certification/dloret/legacy-front-end" target="_blank"
-                rel="noreferrer noopener">Legacy front-end certification <i class="fas fa-external-link-alt"></i></a>
-            </li>
-            <li><a href="https://www.freecodecamp.org/certification/dloret/responsive-web-design" target="_blank"
-                rel="noreferrer noopener">Responsive web design certification <i class="fas fa-external-link-alt"></i></a>
-            </li>
-            <li><a href="https://www.freecodecamp.org/certification/dloret/javascript-algorithms-and-data-structures"
-                target="_blank" rel="noreferrer noopener">JavaScript Algorithms and Data Structures <i
-                  class="fas fa-external-link-alt"></i></a></li>
-          </ul>
-        </footer>
-      </section>
-      <section id="personal">
-        <h2>Personal projects</h2>
-        <div class="topic perso">
-          <h3>Personal purpose</h3>
-          <article class="project-tile">
-            <a href="http://2d2h.net/helios/tirelire/" target="_blank">
-              <img src="images/perso_2_piggyBank.png" alt="Screen shot of a piggy bank">
-              <h4>Tirelire</h4>
-              <p>A piggy bank content management app for kids learning to add and substract numbers, built with React and Sass.</p>
-            </a>
-          </article>
-        </div>
-        <div class="topic pro">
-          <h3>Professional purpose</h3>
-          <article class="project-tile">
-            <a href="http://support-hub-draft.s3-website.eu-west-3.amazonaws.com/" target="_blank">
-              <img src="images/perso_1_supportHub.png" alt="Screen shot of a support team web page">
-              <h4>b-process support team resources page</h4>
-              <p>A page built for the b-process support team I was then managing, to centralize all resources and
-                communication templates. It is fed by a JSON file.</p>
-            </a>
-          </article>
-        </div>
-      </section>
-    </main>
-    <footer class="contact" id="network">
-      <h2>Contact me!</h2>
-      <a href="https://www.linkedin.com/in/donatienloret/?locale=en_US" target="_blank" rel="noopener noreferrer"><i
-          class="fab fa-linkedin"></i></a>
-      <a href="https://github.com/dloret" target="_blank" rel="noopener noreferrer"><i
-          class="fab fa-github-square"></i></a>
-      <a href="https://twitter.com/DonatienLoret" target="_blank" rel="noopener noreferrer"><i
-          class="fab fa-twitter"></i></a>
-      <a href="https://www.freecodecamp.org/dloret" id="profile-link" target="_blank" rel="noopener noreferrer"><i
-          class="fab fa-free-code-camp"></i></a>
-    </footer>
-  </div>
-  <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
-</body>
-
+  <body>
+    <div class="wrapper">
+      <nav id="navbar">
+        <ul>
+          <li><a href="#welcome-section">About</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#network">Contact</a></li>
+        </ul>
+      </nav>
+      <header id="welcome-section">
+        <h1>Welcom<span class="welcome-last-letter">E</span></h1>
+        <p>i <i class="far fa-heart"></i> web technologies and learning</p>
+        <p class="fas fa-angle-double-down"></p>
+      </header>
+      <main id="projects">
+        <section id="fcc">
+          <h2>Free Code Camp curriculum</h2>
+          <div class="topic responsive">
+            <h3>Responsive web design</h3>
+            <article class="project-tile">
+              <a
+                href="http://2d2h.net/fcc/responsive_web_design/technical_documentation_page/"
+                target="_blank"
+              >
+                <img
+                  src="images/resp_4_techDoc.png"
+                  alt="Screen shot of a technical documentation page"
+                />
+                <h4>Technical documentation page</h4>
+                <p>
+                  A big article about Asynchronous JavaScript, built with HTML,
+                  CSS and a single dependency to Google's
+                  <em>code-prettify</em> for the code snippets
+                </p>
+              </a>
+            </article>
+            <article class="project-tile">
+              <a
+                href="http://2d2h.net/fcc/responsive_web_design/survey_form/"
+                target="_blank"
+              >
+                <img
+                  src="images/resp_2_survey.png"
+                  alt="Screen shot of survey form"
+                />
+                <h4>Survey form</h4>
+                <p>
+                  Satisfaction survey built with HTML, CSS and some JavaScript
+                  for validation and a better user experience
+                </p>
+              </a>
+            </article>
+            <article class="project-tile">
+              <a
+                href="http://2d2h.net/fcc/responsive_web_design/product_landing_page/"
+                target="_blank"
+              >
+                <img
+                  src="images/resp_3_product.png"
+                  alt="Screen shot of a landing page for a trail race"
+                />
+                <h4>Product landing page</h4>
+                <p>
+                  A landing page for a fake trail race, built with HTML and CSS
+                  only (grid and flexbox)
+                </p>
+              </a>
+            </article>
+            <article class="project-tile">
+              <a
+                href="http://2d2h.net/fcc/responsive_web_design/tribute/"
+                target="_blank"
+              >
+                <img
+                  src="images/resp_1_herbert.png"
+                  alt="Portrait of Frank Herbert"
+                />
+                <h4>Tribute to Frank Herbert</h4>
+                <p>A simple page using HTML and CSS only</p>
+              </a>
+            </article>
+          </div>
+          <div class="topic frontend">
+            <h3>Front End Libraries</h3>
+            <article class="project-tile">
+              <a
+                href="http://2d2h.net/fcc/front_end_libraries/markdown_previewer/"
+                target="_blank"
+              >
+                <img
+                  src="images/front_5_markdownpng.png"
+                  alt="Screen shot of a page with a field to translate markdown in html"
+                />
+                <h4>Markdown Previewer</h4>
+                <p>
+                  A page built with React, Redux, Sass and a dependency to the
+                  "marked" parser &amp; compiler to format the markdown text as
+                  html rendered with react-html-parser
+                </p>
+              </a>
+            </article>
+            <article class="project-tile">
+              <a
+                href="http://2d2h.net/fcc/front_end_libraries/random_quote_machine/"
+                target="_blank"
+              >
+                <img
+                  src="images/front_4_quotes.png"
+                  alt="Screen shot of a page with random quotes"
+                />
+                <h4>Random Quote Machine</h4>
+                <p>
+                  A quote API without authentication is queried by a React app.
+                  State is managed with Redux. It's styled with Sass.
+                </p>
+              </a>
+            </article>
+            <article class="project-tile">
+              <a href="https://codepen.io/dloret/full/pENpYq" target="_blank">
+                <img
+                  src="images/front_2_simon.png"
+                  alt="Screen shot of a page with a timer"
+                />
+                <h4>Simon Says</h4>
+                <p>
+                  The "Simon says" game from the 1980's, built with Vanilla
+                  JavaScript
+                </p>
+              </a>
+            </article>
+            <article class="project-tile">
+              <a href="https://codepen.io/dloret/full/zBdYzL" target="_blank">
+                <img
+                  src="images/front_1_pomodoro.png"
+                  alt="Screen shot of a page with a timer"
+                />
+                <h4>Pomodoro Timer</h4>
+                <p>Timer built with Vanilla JavaScript</p>
+              </a>
+            </article>
+            <article class="project-tile">
+              <a href="https://codepen.io/dloret/full/RRLbwL" target="_blank">
+                <img
+                  src="images/front_3_ticTacToe.png"
+                  alt="Screen shot of a tic tac toe game"
+                />
+                <h4>Tic Tac Toe Game</h4>
+                <p>A simple Tic Tac Toe game, built with Vanilla JavaScript</p>
+              </a>
+            </article>
+            <article class="project-tile">
+              <a href="http://codepen.io/dloret/full/gMwNpe/" target="_blank">
+                <img
+                  src="images/front_6_calculator.png"
+                  alt="Screen shot of a calculator"
+                />
+                <h4>JavaScript Calculator</h4>
+                <p>
+                  A classical calculator built with HTML, CSS and Vanilla
+                  JavaScript
+                </p>
+              </a>
+            </article>
+          </div>
+          <footer>
+            <h3>FCC Certifications</h3>
+            <ul>
+              <li>
+                <a
+                  href="https://www.freecodecamp.org/certification/dloret/legacy-front-end"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  >Legacy front-end certification
+                  <i class="fas fa-external-link-alt"></i
+                ></a>
+              </li>
+              <li>
+                <a
+                  href="https://www.freecodecamp.org/certification/dloret/responsive-web-design"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  >Responsive web design certification
+                  <i class="fas fa-external-link-alt"></i
+                ></a>
+              </li>
+              <li>
+                <a
+                  href="https://www.freecodecamp.org/certification/dloret/javascript-algorithms-and-data-structures"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  >JavaScript Algorithms and Data Structures
+                  <i class="fas fa-external-link-alt"></i
+                ></a>
+              </li>
+            </ul>
+          </footer>
+        </section>
+        <section id="personal">
+          <h2>Personal projects</h2>
+          <div class="topic perso">
+            <h3>Personal purpose</h3>
+            <article class="project-tile">
+              <a href="http://2d2h.net/helios/tirelire/" target="_blank">
+                <img
+                  src="images/perso_2_piggyBank.png"
+                  alt="Screen shot of a piggy bank"
+                />
+                <h4>Tirelire</h4>
+                <p>
+                  A piggy bank content management app for kids learning to add
+                  and substract numbers, built with React and Sass.
+                </p>
+              </a>
+            </article>
+          </div>
+          <div class="topic pro">
+            <h3>Professional purpose</h3>
+            <article class="project-tile">
+              <a
+                href="http://support-hub-draft.s3-website.eu-west-3.amazonaws.com/"
+                target="_blank"
+              >
+                <img
+                  src="images/perso_1_supportHub.png"
+                  alt="Screen shot of a support team web page"
+                />
+                <h4>b-process support team resources page</h4>
+                <p>
+                  A page built for the b-process support team I was then
+                  managing, to centralize all resources and communication
+                  templates. It is fed by a JSON file.
+                </p>
+              </a>
+            </article>
+          </div>
+        </section>
+      </main>
+      <footer class="contact" id="network">
+        <h2>Contact me!</h2>
+        <a
+          href="https://www.linkedin.com/in/donatienloret/?locale=en_US"
+          target="_blank"
+          rel="noopener noreferrer"
+          ><i class="fab fa-linkedin"></i
+        ></a>
+        <a
+          href="https://github.com/dloret"
+          target="_blank"
+          rel="noopener noreferrer"
+          ><i class="fab fa-github-square"></i
+        ></a>
+        <a
+          href="https://twitter.com/DonatienLoret"
+          target="_blank"
+          rel="noopener noreferrer"
+          ><i class="fab fa-twitter"></i
+        ></a>
+        <a
+          href="https://www.freecodecamp.org/dloret"
+          id="profile-link"
+          target="_blank"
+          rel="noopener noreferrer"
+          ><i class="fab fa-free-code-camp"></i
+        ></a>
+      </footer>
+    </div>
+    <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+  </body>
 </html>
