@@ -1,31 +1,58 @@
-import { combineReducers } from 'redux';
 import { constants as c } from './constants';
+import cleanUpZeros from '../helpers';
 
-const initialState = {
+/*const initialState = {
   currentOperation: [],
   typingOperator: false,
+  hasDot: false,
   result: 0,
-};
+};*/
 
-function updateTypingOperator(state = false, action) {
+export default function globalReducer(state = {}, action) {
   switch (action.type) {
-    case c.ADD_OPERAND:
-      return !state;
+    case c.ADD_INTEGER:
+      return {
+        ...state,
+        typingOperator: false,
+        currentOperation: [...state.currentOperation, action.payload],
+      };
+    case c.ADD_DOT:
+      return state.hasDot
+        ? state
+        : {
+            ...state,
+            hasDot: true,
+            currentOperation: [...state.currentOperation, action.payload],
+          };
     case c.ADD_OPERATOR:
-      return !state;
-    default: return state;
-  }
-
-}
-
-function updateOperand(state = [], action) {
-  switch (action.type) {
-    case c.ADD_OPERAND:
-      const num = parseFloat(action.payload);
-      return [...state, num];
+      const currentOperation = state.currentOperation;
+      return state.typingOperator
+        ? {
+            ...state,
+            hasDot: false,
+            typingOperator: true,
+            currentOperation: [
+              ...currentOperation.slice(0, currentOperation.length - 1),
+              action.payload,
+            ],
+          }
+        : {
+            ...state,
+            hasDot: false,
+            typingOperator: true,
+            currentOperation: [...state.currentOperation, action.payload],
+          };
+    case c.GET_RESULT:
+      const operation = cleanUpZeros(state.currentOperation).replace(/x/, '*');
+      const result = eval(operation);
+      return {
+        ...state,
+        currentOperation: [...String(result)],
+        hasDot: false,
+        typingOperator: false,
+        result,
+      };
     default:
       return state;
   }
 }
-
-function updateOperator

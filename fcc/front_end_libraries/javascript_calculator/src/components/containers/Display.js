@@ -2,12 +2,11 @@ import { connect } from 'react-redux';
 import Display from '../ui/Display';
 
 const mapStateToProps = state => ({
-  typingOperator: state.typingOperator,
   currentOperation: state.currentOperation,
+  result: state.result,
 });
 
-const mapDispatchToProps = {};
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
+  null,
 )(Display);

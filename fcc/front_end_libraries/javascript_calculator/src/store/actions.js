@@ -1,15 +1,22 @@
 import { constants as c } from './constants';
 
-export function addOperand(payload) {
+export function addOperator(payload) {
   return {
-    type: c.ADD_OPERAND,
+    type: c.ADD_OPERATOR,
     payload,
   };
 }
 
-export function addOperator(payload) {
+export function addInteger(payload) {
   return {
-    type: c.ADD_OPERATOR,
+    type: c.ADD_INTEGER,
+    payload,
+  };
+}
+
+export function addDot(payload) {
+  return {
+    type: c.ADD_DOT,
     payload,
   };
 }

@@ -1,5 +1,12 @@
 import React from 'react';
+import cleanUpZeros from '../../helpers';
 
-const Display = () => <section id="display" />;
+const Display = ({ currentOperation, result }) => {
+  return (
+    <section id="display">
+      {currentOperation.length > 0 ? cleanUpZeros(currentOperation) : result}
+    </section>
+  );
+};
 
 export default Display;
