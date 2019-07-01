@@ -44,6 +44,7 @@ export default function globalReducer(state = {}, action) {
           };
     case c.GET_RESULT:
       const operation = cleanUpZeros(state.currentOperation).replace(/x/, '*');
+      // eslint-disable-next-line
       const result = eval(operation);
       return {
         ...state,
@@ -51,6 +52,14 @@ export default function globalReducer(state = {}, action) {
         hasDot: false,
         typingOperator: false,
         result,
+      };
+    case c.CLEAR_RESULT:
+      return {
+        ...state,
+        currentOperation: [],
+        hasDot: false,
+        typingOperator: false,
+        result: 0,
       };
     default:
       return state;

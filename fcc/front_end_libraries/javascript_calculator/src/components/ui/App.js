@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Display from '../containers/Display';
-import Keyboard from '../ui/Keyboard';
+import Keyboard from '../containers/Keyboard';
 import '../../style/App.scss';
 
 function App() {

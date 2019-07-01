@@ -8,8 +8,6 @@ import App from './components/ui/App';
 import './style/index.scss';
 import * as serviceWorker from './serviceWorker';
 
-import { addInteger, addDot, addOperator, getResult } from './store/actions';
-
 const initialState = {
   currentOperation: [],
   typingOperator: false,
@@ -24,39 +22,6 @@ const store = createStore(
 );
 
 store.subscribe(() => console.log(store.getState()));
-store.dispatch(addInteger(0));
-store.dispatch(addInteger(0));
-store.dispatch(addDot('.'));
-store.dispatch(addInteger(6));
-store.dispatch(addOperator('x'));
-store.dispatch(addInteger(0));
-store.dispatch(addInteger(0));
-store.dispatch(addInteger(0));
-store.dispatch(addInteger(1));
-store.dispatch(addInteger(0));
-store.dispatch(addInteger(9));
-store.dispatch(addDot('.'));
-store.dispatch(addDot('.'));
-store.dispatch(addInteger(0));
-store.dispatch(addInteger(3));
-store.dispatch(addInteger(0));
-store.dispatch(addInteger(0));
-store.dispatch(addInteger(0));
-store.dispatch(addDot('.'));
-store.dispatch(addOperator('+'));
-store.dispatch(addOperator('-'));
-store.dispatch(addInteger(0));
-store.dispatch(addInteger(0));
-store.dispatch(addInteger(0));
-store.dispatch(addDot('.'));
-store.dispatch(addInteger(0));
-store.dispatch(addInteger(2));
-store.dispatch(addInteger(0));
-store.dispatch(addInteger(0));
-store.dispatch(addInteger(5));
-store.dispatch(addInteger(0));
-store.dispatch(addInteger(0));
-store.dispatch(getResult());
 
 ReactDOM.render(
   <Provider store={store}>
