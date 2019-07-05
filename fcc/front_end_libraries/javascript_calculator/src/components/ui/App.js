@@ -10,8 +10,10 @@ function App() {
       <header>
         <h1>Javascript Calculator</h1>
       </header>
-      <Display />
-      <Keyboard />
+      <div className="calculator">
+        <Display />
+        <Keyboard />
+      </div>
     </div>
   );
 }
