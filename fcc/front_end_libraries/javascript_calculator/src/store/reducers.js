@@ -43,9 +43,16 @@ export default function globalReducer(state = {}, action) {
             currentOperation: [...state.currentOperation, action.payload],
           };
     case c.GET_RESULT:
-      const operation = cleanUpZeros(state.currentOperation).replace(/x/, '*');
-      // eslint-disable-next-line
-      const result = eval(operation);
+      const operation = cleanUpZeros(state.currentOperation).replace(/x/g, '*');
+      let result = null;
+      try {
+        console.log(operation);
+        // eslint-disable-next-line
+        result = eval(operation);
+      } catch (error) {
+        console.log(error);
+      }
+
       return {
         ...state,
         currentOperation: [...String(result)],
