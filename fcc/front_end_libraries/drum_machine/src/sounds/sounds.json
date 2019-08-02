@@ -1,0 +1,56 @@
+[
+  {
+    "fileName": "DR660_808_Clap",
+    "ext": "wav",
+    "key": "q",
+    "ascii": 113
+  },
+  {
+    "fileName": "DR660_808_High_Tom",
+    "ext": "wav",
+    "key": "w",
+    "ascii": 119
+  },
+  {
+    "fileName": "DR660_808_Snare",
+    "ext": "wav",
+    "key": "e",
+    "ascii": 101
+  },
+  {
+    "fileName": "DR660_Bassdrum_Block",
+    "ext": "wav",
+    "key": "a",
+    "ascii": 97
+  },
+  {
+    "fileName": "DR660_Bassdrum_Dance",
+    "ext": "wav",
+    "key": "s",
+    "ascii": 115
+  },
+  {
+    "fileName": "DR660_Bassdrum_Filter_env",
+    "ext": "wav",
+    "key": "d",
+    "ascii": 100
+  },
+  {
+    "fileName": "DR660_Snare_Big",
+    "ext": "wav",
+    "key": "z",
+    "ascii": 122
+  },
+  {
+    "fileName": "DR660_Snare_Cool",
+    "ext": "wav",
+    "key": "x",
+    "ascii": 120
+  },
+  {
+    "fileName": "DR660_Snare_Decent",
+    "ext": "wav",
+    "key": "c",
+    "ascii": 99
+  }
+]

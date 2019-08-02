@@ -1,38 +1,21 @@
 import React from 'react';
 
+import sounds from '../../sounds/sounds.json';
+console.log(sounds);
+
 export default function Keyboard() {
   return (
     <section>
-      <button type="button" id="" className="drum-pad">
-        Q
-        <audio className="clip" preload="auto" autoPlay>
-          <source src="../../sounds/DR660_808_Clap.wav" type="audio/wav" />
-        </audio>
-      </button>
-      <button type="button" id="" className="drum-pad">
-        W
-      </button>
-      <button type="button" id="" className="drum-pad">
-        E
-      </button>
-      <button type="button" id="" className="drum-pad">
-        A
-      </button>
-      <button type="button" id="" className="drum-pad">
-        S
-      </button>
-      <button type="button" id="" className="drum-pad">
-        D
-      </button>
-      <button type="button" id="" className="drum-pad">
-        Z
-      </button>
-      <button type="button" id="" className="drum-pad">
-        X
-      </button>
-      <button type="button" id="" className="drum-pad">
-        C
-      </button>
+      {sounds.map(sound => {
+        import(`../../sounds/${sound.fileName}.${sound.ext}`)
+          .then(module => (
+            <button id={sound.key} className="drum-pad" key={sound.key}>
+              <audio className="clip" src={module} type="audio/wav" />
+              {sound.key}
+            </button>
+          ))
+          .catch(error => console.log(error));
+      })}
     </section>
   );
 }
