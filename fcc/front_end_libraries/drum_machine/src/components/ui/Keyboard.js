@@ -1,31 +1,51 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
+import Pad from './Pad';
 import sounds from '../../sounds/sounds.json';
-
-import DR660_808_Clap from '../../sounds/DR660_808_Clap.wav';
-import DR660_808_High_Tom from '../../sounds/DR660_808_High_Tom.wav';
-import DR660_808_Snare from '../../sounds/DR660_808_Snare.wav';
 console.log(sounds);
 
-const handleClick = event => {
-  event.persist();
-  console.log(event.nativeEvent);
-  event.nativeEvent.srcElement.children[0].play();
-};
+export default function Keyboard({ showDisplay }) {
+  const [playing, setPlaying] = useState('');
 
-export default function Keyboard() {
+  const handleEvent = event => {
+    let soundName = null;
+
+    if (event.type && event.type === 'click') {
+      setPlaying(event.target.id);
+      soundName = sounds.filter(sound => sound.key === event.target.id);
+      showDisplay(soundName[0].fileName);
+    } else if (
+      event.key &&
+      ['q', 'w', 'e', 'a', 's', 'd', 'z', 'x', 'c'].includes(event.key)
+    ) {
+      setPlaying(event.key);
+      soundName = sounds.filter(sound => sound.key === event.key);
+      showDisplay(soundName[0].fileName);
+    }
+    setTimeout(() => setPlaying(''), 50);
+  };
+
+  useEffect(() => {
+    window.addEventListener('keydown', handleEvent);
+    return () => window.removeEventListener('keydown', handleEvent);
+  });
+
   return (
     <section>
       {sounds.map(sound => (
-        <button
-          id={sound.key}
+        <div
           className="drum-pad"
+          onClick={handleEvent}
+          id={sound.key}
           key={sound.key}
-          onClick={handleClick}
         >
-          <audio className="clip" src={sound.fileName} type="audio/wav" />
-          {sound.key}
-        </button>
+          {sound.key.toUpperCase()}
+          <Pad
+            source={`${sound.url}`}
+            playing={playing}
+            padId={sound.key.toUpperCase()}
+          />
+        </div>
       ))}
     </section>
   );

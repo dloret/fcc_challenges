@@ -1,55 +1,55 @@
 [
   {
-    "fileName": "DR660_808_Clap",
-    "ext": "wav",
+    "fileName": "Heater - 1",
+    "url": "https://s3.amazonaws.com/freecodecamp/drums/Heater-1.mp3",
     "key": "q",
     "ascii": 113
   },
   {
-    "fileName": "DR660_808_High_Tom",
-    "ext": "wav",
+    "fileName": "Heater - 2",
+    "url": "https://s3.amazonaws.com/freecodecamp/drums/Heater-2.mp3",
     "key": "w",
     "ascii": 119
   },
   {
-    "fileName": "DR660_808_Snare",
-    "ext": "wav",
+    "fileName": "Heater - 3",
+    "url": "https://s3.amazonaws.com/freecodecamp/drums/Heater-3.mp3",
     "key": "e",
     "ascii": 101
   },
   {
-    "fileName": "DR660_Bassdrum_Block",
-    "ext": "wav",
+    "fileName": "Chord - 1",
+    "url": "https://s3.amazonaws.com/freecodecamp/drums/Chord_1.mp3",
     "key": "a",
     "ascii": 97
   },
   {
-    "fileName": "DR660_Bassdrum_Dance",
-    "ext": "wav",
+    "fileName": "Chord - 2",
+    "url": "https://s3.amazonaws.com/freecodecamp/drums/Chord_2.mp3",
     "key": "s",
     "ascii": 115
   },
   {
-    "fileName": "DR660_Bassdrum_Filter_env",
-    "ext": "wav",
+    "fileName": "Chord - 3",
+    "url": "https://s3.amazonaws.com/freecodecamp/drums/Chord_3.mp3",
     "key": "d",
     "ascii": 100
   },
   {
-    "fileName": "DR660_Snare_Big",
-    "ext": "wav",
+    "fileName": "Kick'n Hat",
+    "url": "https://s3.amazonaws.com/freecodecamp/drums/Kick_n_Hat.mp3",
     "key": "z",
     "ascii": 122
   },
   {
-    "fileName": "DR660_Snare_Cool",
-    "ext": "wav",
+    "fileName": "Punchy Kick",
+    "url": "https://s3.amazonaws.com/freecodecamp/drums/punchy_kick_1.mp3",
     "key": "x",
     "ascii": 120
   },
   {
-    "fileName": "DR660_Snare_Decent",
-    "ext": "wav",
+    "fileName": "RP4 Kick",
+    "url": "https://s3.amazonaws.com/freecodecamp/drums/RP4_KICK_1.mp3",
     "key": "c",
     "ascii": 99
   }
