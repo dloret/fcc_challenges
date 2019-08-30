@@ -9,17 +9,26 @@ export default function Keyboard({ showDisplay }) {
 
   const handleEvent = event => {
     let soundName = null;
+    console.log(event);
 
     if (event.type && event.type === 'click') {
       setPlaying(event.target.id);
-      soundName = sounds.filter(sound => sound.key === event.target.id);
+      soundName = sounds.filter(sound => {
+        // console.log(sound.key, event.target.id);
+        return sound.key === event.target.id;
+      });
       showDisplay(soundName[0].fileName);
     } else if (
       event.key &&
-      ['q', 'w', 'e', 'a', 's', 'd', 'z', 'x', 'c'].includes(event.key)
+      ['Q', 'W', 'E', 'A', 'S', 'D', 'Z', 'X', 'C'].includes(
+        event.key.toUpperCase(),
+      )
     ) {
-      setPlaying(event.key);
-      soundName = sounds.filter(sound => sound.key === event.key);
+      setPlaying(event.key.toUpperCase());
+      soundName = sounds.filter(sound => {
+        // console.log(sound.key, event.key.toUpperCase());
+        return sound.key === event.key.toUpperCase();
+      });
       showDisplay(soundName[0].fileName);
     }
     setTimeout(() => setPlaying(''), 50);
@@ -39,12 +48,8 @@ export default function Keyboard({ showDisplay }) {
           id={sound.key}
           key={sound.key}
         >
-          {sound.key.toUpperCase()}
-          <Pad
-            source={`${sound.url}`}
-            playing={playing}
-            padId={sound.key.toUpperCase()}
-          />
+          {sound.key}
+          <Pad source={`${sound.url}`} playing={playing} padId={sound.key} />
         </div>
       ))}
     </section>

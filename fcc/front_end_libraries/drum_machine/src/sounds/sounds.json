@@ -2,55 +2,46 @@
   {
     "fileName": "Heater - 1",
     "url": "https://s3.amazonaws.com/freecodecamp/drums/Heater-1.mp3",
-    "key": "q",
-    "ascii": 113
+    "key": "Q"
   },
   {
     "fileName": "Heater - 2",
     "url": "https://s3.amazonaws.com/freecodecamp/drums/Heater-2.mp3",
-    "key": "w",
-    "ascii": 119
+    "key": "W"
   },
   {
     "fileName": "Heater - 3",
     "url": "https://s3.amazonaws.com/freecodecamp/drums/Heater-3.mp3",
-    "key": "e",
-    "ascii": 101
+    "key": "E"
   },
   {
     "fileName": "Chord - 1",
     "url": "https://s3.amazonaws.com/freecodecamp/drums/Chord_1.mp3",
-    "key": "a",
-    "ascii": 97
+    "key": "A"
   },
   {
     "fileName": "Chord - 2",
     "url": "https://s3.amazonaws.com/freecodecamp/drums/Chord_2.mp3",
-    "key": "s",
-    "ascii": 115
+    "key": "S"
   },
   {
     "fileName": "Chord - 3",
     "url": "https://s3.amazonaws.com/freecodecamp/drums/Chord_3.mp3",
-    "key": "d",
-    "ascii": 100
+    "key": "D"
   },
   {
     "fileName": "Kick'n Hat",
     "url": "https://s3.amazonaws.com/freecodecamp/drums/Kick_n_Hat.mp3",
-    "key": "z",
-    "ascii": 122
+    "key": "Z"
   },
   {
     "fileName": "Punchy Kick",
     "url": "https://s3.amazonaws.com/freecodecamp/drums/punchy_kick_1.mp3",
-    "key": "x",
-    "ascii": 120
+    "key": "X"
   },
   {
     "fileName": "RP4 Kick",
     "url": "https://s3.amazonaws.com/freecodecamp/drums/RP4_KICK_1.mp3",
-    "key": "c",
-    "ascii": 99
+    "key": "C"
   }
 ]

@@ -7,7 +7,7 @@ export default class Pad extends React.Component {
   }
 
   playSound = () => {
-    if (this.audioRef.id.toLowerCase() === this.props.playing) {
+    if (this.audioRef.id === this.props.playing) {
       const audioPromise = this.audioRef.play();
       if (audioPromise !== undefined) {
         audioPromise
