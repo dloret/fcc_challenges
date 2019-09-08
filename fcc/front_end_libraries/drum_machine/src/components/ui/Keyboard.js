@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import Pad from './Pad';
 import sounds from '../../sounds/sounds.json';
-console.log(sounds);
+import '../../style/Keyboard.scss';
 
 export default function Keyboard({ showDisplay }) {
   const [playing, setPlaying] = useState('');
