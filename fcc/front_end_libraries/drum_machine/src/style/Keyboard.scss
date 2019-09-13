@@ -1,4 +1,15 @@
 section {
-  border: 1px solid black;
   margin: 10px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  grid-gap: 3px;
+
+  $pad-ids: 'Q', 'W', 'E', 'A', 'S', 'D', 'Z', 'X', 'C';
+  @each $pad in $pad-ids {
+    ##{$pad} {
+      border: 1px solid black;
+      border-radius: 3px;
+    }
+  }
 }
