@@ -10,11 +10,42 @@
     font-family: 'Fira Code', monospace;
     border: 1px solid black;
     border-radius: 3px;
+    height: 45vh;
     & #display {
       margin: 10px 0;
       text-align: center;
       background-color: #333;
       color: #eee;
+      padding: 10px 0;
     }
+  }
+}
+
+@media screen and (min-width: 760px) {
+  .App {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  main {
+    width: 80vw;
+  }
+}
+
+@media screen and (min-width: 1020px) {
+  .App main {
+    height: 50vh;
+  }
+  main {
+    width: 60vw;
+  }
+}
+
+@media screen and (min-width: 1300px) {
+  .App main {
+    height: 55vh;
+  }
+  main {
+    width: 50vw;
   }
 }
