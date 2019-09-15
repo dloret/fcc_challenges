@@ -1,6 +1,7 @@
 {
   "name": "drum_machine",
   "version": "0.1.0",
+  "homepage": "http://2d2h.net/fcc/front_end_libraries/drum_machine",
   "private": true,
   "dependencies": {
     "node-sass": "^4.12.0",
