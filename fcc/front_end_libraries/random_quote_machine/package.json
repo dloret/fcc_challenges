@@ -4,7 +4,7 @@
   "homepage": "http://2d2h.net/fcc/front_end_libraries/random_quote_machine",
   "private": true,
   "dependencies": {
-    "node-sass": "^4.12.0",
+    "node-sass": "^7.0.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-redux": "^7.0.3",
